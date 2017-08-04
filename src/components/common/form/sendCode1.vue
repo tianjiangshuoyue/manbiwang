@@ -1,19 +1,28 @@
 <template>
-    <div class="send-code">
-      <input placeholder="短信验证" type="text" />
-      <button class="btn l">获取验证码</button>
+  <div class="send-code">
+    <input placeholder="短信验证" type="text" />
+     <C-button :size="size"
+               :type="type"
+               :disabled="start"
+               :class="['btn', start ? 'btn-disabled' : '']"
+               :style="{backgroundColor: bgcolor, color: color}"
+    >
+        {{tmpStr}}
+    </C-button>
     </div>
 </template>
 
 <script type="text/babel">
-    // import Button from '../../button/src/button.vue';
+    import CButton from './button.vue';
     export default {
         name: 'yd-sendcode',
+        extends: CButton,
         data() {
             return {
                 tmpStr: '获取短信验证码',
                 timer: null,
-                start: false
+                start: false,
+                isLoading: false,
             }
         },
         props: {
@@ -39,6 +48,7 @@
         },
         methods: {
             run() {
+              this.isLoading = true;
                 let second = this.second;
                 this.tmpStr = this.getStr(this.second);
                 this.timer = setInterval(() => {
@@ -58,8 +68,14 @@
         },
         watch: {
             value(val) {
+              debugger;
                 this.start = val;
                 val && this.run();
+            },
+            isLoading (val) {
+              if (val) {
+                // this.tmpStr = '正在加载中'
+              }
             }
         },
         mounted() {
@@ -67,6 +83,9 @@
         },
         destroyed() {
             this.stop();
+        },
+        components: {
+          CButton
         }
     }
 </script>

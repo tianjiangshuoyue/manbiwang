@@ -12,17 +12,19 @@
         </li>
         <li>
           <label for="">登陆密码</label>
-          <input placeholder="6-20位数字、字符" type="password">
+          <password-strong></password-strong>
         </li>
         <li>
           <label for="">验证码</label>
             <send-code slot="right" 
               :initStr="'获取验证码'"
-              v-model="start1" 
+              :runStr="'{%s}秒后重试'"
+              v-model="start1"
               @click.native="sendCode1" 
               type="warning"
             ></send-code>
         </li>
+        
       </ul>
        <button class="btn large long">注册</button>
       <router-link to="/login" class="btn text">老用户登陆</router-link>
@@ -32,7 +34,8 @@
 </template>
 <script>
 import Vodal from '../../components/common/vodal.vue';
-import SendCode from '../../components/common/sendCode.vue';
+import SendCode from '../../components/common/form/sendCode1.vue';
+import PasswordStrong from '../../components/common/form/passwordStrong.vue';
 export default {
   data () {
     return {
@@ -40,9 +43,22 @@ export default {
       start1: false,
     }
   },
+  methods: {
+     sendCode1() {
+          this.$message('发送中...');
+        setTimeout(() => {
+            this.start1 = true;
+            // this.$dialog.loading.close();
+
+            this.$message('已发送');
+
+        }, 1000);
+    }
+  },
   components: {
     Vodal,
     SendCode,
+    PasswordStrong
   }
 }
 </script>

@@ -12,7 +12,7 @@
         </li>
         <li>
           <label for="">登陆密码</label>
-          <input placeholder="6-20位数字、字符" type="password">
+          <input placeholder="请输入" type="password">
         </li>
        
       </ul>
