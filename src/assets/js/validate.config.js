@@ -8,7 +8,9 @@ export default {
         //   validate: (value, args) => {
         //      return value.length == 11 && /^((13|14|15|17|18)[0-9]{1}\d{8})$/.test(value)
         //   }
-        getMessage: (field, args) => '请输入正确的手机号',
+        messages: {
+            zh_CN: (field, args) => '请输入正确的手机号',
+        },
         validate: isPhone
     },
     password: {

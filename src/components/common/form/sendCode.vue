@@ -68,7 +68,6 @@
         },
         watch: {
             value(val) {
-              debugger;
                 this.start = val;
                 val && this.run();
             },
