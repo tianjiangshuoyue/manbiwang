@@ -1,4 +1,4 @@
-import {isPhone, isPassword } from './regex.js';
+import { isPhone, isPassword } from './regex.js';
 
 export default {
     mobile: {
