@@ -1,18 +1,30 @@
 <template>
 <vodal
   :width="320"
-  :height="357+61"
+  :height="357+161"
   :show="show" animation="rotate" @hide="show = false">
     <header class="vodal-title">注册</header>
     <form class="vodal-content form">
       <ul>
+        
         <li>
-          <label for="">手机号</label>
-          <input placeholder="请输入手机号码" type="phone">
+          <label class="label" for="mobile">手机号</label>
+          <p>
+            <input
+            v-validate="'required|mobile'" :class="{'input': true, 'is-danger': errors.has('mobile') }"
+            name="mobile" type="text" placeholder="Mobile">
+            <span v-show="errors.has('mobile')" class="help is-danger">{{ errors.first('mobile') }}</span>
+          </p>
         </li>
         <li>
-          <label for="">登陆密码</label>
-          <password-strong></password-strong>
+          <label class="label" for="password">登陆密码</label>
+          <p>
+            <input v-validate="'required|password'"
+            :class="{'input': true, 'is-danger': errors.has('password') }" name="password"
+            type="password"
+            placeholder="6-20位数字、字符">
+            <span v-show="errors.has('password')" class="help is-danger">{{ errors.first('password') }}</span>
+          </p>
         </li>
         <li>
           <label for="">验证码</label>
@@ -26,7 +38,7 @@
         </li>
         
       </ul>
-       <button class="btn large long">注册</button>
+       <button type="button" class="btn large long">注册</button>
       <router-link to="/login" class="btn text">老用户登陆</router-link>
        
     </form>
@@ -34,13 +46,20 @@
 </template>
 <script>
 import Vodal from '../../components/common/vodal.vue';
-import SendCode from '../../components/common/form/sendCode1.vue';
+import SendCode from '../../components/common/form/sendCode.vue';
 import PasswordStrong from '../../components/common/form/passwordStrong.vue';
 export default {
   data () {
     return {
       show: true,
       start1: false,
+      mobile: '',
+      email: ''
+    }
+  },
+  watch: {
+    errors () {
+      debugger;
     }
   },
   methods: {
