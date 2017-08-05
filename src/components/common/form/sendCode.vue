@@ -1,7 +1,7 @@
 <template>
-  <div class="send-code">
-    <input placeholder="短信验证" type="text" />
+    
      <C-button :size="size"
+        name="sendCode"
                :type="type"
                :disabled="start"
                :class="['btn', start ? 'btn-disabled' : '']"
@@ -9,7 +9,7 @@
     >
         {{tmpStr}}
     </C-button>
-    </div>
+    
 </template>
 
 <script type="text/babel">
@@ -88,8 +88,7 @@
         }
     }
 </script>
-<style lang="less">
-.send-code {
+<style lang="less" scoped>
 
   input,button {
     display: inline-block;
@@ -101,5 +100,4 @@
   button {
     height: 44px;
   }
-}
 </style>

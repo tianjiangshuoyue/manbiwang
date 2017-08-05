@@ -16,6 +16,7 @@ console.log('zh', zh_CN);
 console.log('config', validateConfig);
 Validator.extend('mobile', validateConfig.mobile);
 Validator.extend('password', validateConfig.password);
+Validator.extend('sendCode', validateConfig.sendCode);
 console.dir(Validator);
 Validator.addLocale(zh_CN);
 const config = {

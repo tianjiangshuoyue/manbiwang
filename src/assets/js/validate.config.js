@@ -24,5 +24,16 @@ export default {
             zh_CN: (field, args) => '请输入正确的密码',
         },
         validate: isPassword
+    },
+    sendCode: {
+        //  messages: {
+        //       cn:(field, args) => field + '必须是11位手机号码',
+        //   },
+        validate: (value, args) => {
+            return /\d{6}/.test(value);
+        },
+        messages: {
+            zh_CN: (field, args) => '请输入正确的验证码',
+        },
     }
 }
