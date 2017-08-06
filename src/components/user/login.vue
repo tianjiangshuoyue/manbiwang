@@ -35,6 +35,9 @@
 </vodal>
 </template>
 <script>
+/**
+ * file 登录
+ */
 import Vodal from '../../components/common/vodal.vue';
 export default {
   data () {

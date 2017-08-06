@@ -3,7 +3,7 @@
         <main>
             <section>
                 <header id="assets-wrap">
-                    <h2>我的资产</h2>
+                    <h2 class="active-tab">我的资产</h2>
                     
                 </header>
                 <my-assets></my-assets>
@@ -11,17 +11,24 @@
             
             <section>
                 <header>
-                <h2>会员中心</h2>
+                <h2 class="active-tab">会员中心</h2>
+                <user-center></user-center>
             </header>
             </section>
-            <header><h2>账户与安全</h2></header>
+            <section>
+                <header><h2 class="active-tab">账户与安全</h2></header>
+            </section>
         </main>
         <sidebar></sidebar>
     
     </div>
 </template>
 <script>
+/**
+ * file 用户中心首页-资产管理
+ */
 import myAssets from './child/myAssets.vue';
+import userCenter from './child/userCenter.vue';
 import sidebar from '../common/leftSideBar.vue';
 export default {
     data () {
@@ -32,7 +39,8 @@ export default {
 
     },components: {
         myAssets,
-        sidebar
+        sidebar,
+        userCenter
     }
 }
 </script>
@@ -45,10 +53,7 @@ main {
     left: 200px;
     right: 0;
 }
-header {
-    height: 36px;
-    background-color: #f7f7f7;
-}
+
 #assets-wrap {
     width: 100%;
 }
