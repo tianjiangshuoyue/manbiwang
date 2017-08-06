@@ -6,7 +6,6 @@
                     <h2>我的资产</h2>
                     
                 </header>
-                <span>总资产</span>
                 <my-assets></my-assets>
             </section>
             

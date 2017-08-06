@@ -9,7 +9,7 @@
                 </p>
             </section>
             <ul class="menu">
-                <li>资产管理</li>
+                <li><router-link to="/userCenterHome">资产管理</router-link></li>
                 <li>充值</li>
                 <li>提现</li>
                 <li>充值/提现记录</li>
