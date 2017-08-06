@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    哈哈哈
-    <img src="./assets/logo.png">
+    <header>欢迎您，123@manbi.wang <span>退出</span></header>
     <router-view></router-view>
   </div>
 </template>
@@ -20,6 +19,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+#app>header {
+  height: 30px;
+  padding-right: 130px;
+  line-height: 30px;
+  background-color: #4c5861;
+  text-align: right;
+  color: #aeaeae;
 }
 </style>
