@@ -6,10 +6,10 @@
             </div>
         </div>
         <div>
-            <header>
+            <header id="assets-value">
                 
                 总资产:
-                <em class="money">16000</em>
+                <em >16000</em>
             </header>
             <ul>
                 <li class="title">
@@ -134,6 +134,15 @@ export default {
     >div {
         width: 48%;
     }
+}
+#assets-value {
+    padding: 20px 0;
+    em {
+        font-size: 20px;
+        color: #4182ef;
+        font-style: normal;
+    }
+    
 }
 .title {
     background-color: #f7f7f7;

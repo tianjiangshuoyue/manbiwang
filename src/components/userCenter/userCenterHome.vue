@@ -8,7 +8,7 @@
                 </header>
                 <my-assets></my-assets>
             </section>
-            <div>
+            <div id="center-wrap">
                 <section>
                     <header>
                         <h2 class="active-tab">会员中心</h2>
@@ -67,5 +67,8 @@ h2 {
     box-shadow: inset -1px 0 0 0 #d9d9d9, inset 1px 0 0 0 #d9d9d9, inset 0 3px 0 0 #4182ef;
     color: #666;
     font-size: 14px;
+}
+#center-wrap {
+    display: flex;
 }
 </style>
