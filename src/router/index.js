@@ -4,6 +4,7 @@ import Hello from '@/components/Hello';
 const Register = resolve => require(['@/components/user/register.vue'], resolve);
 const Login = resolve => require(['@/components/user/login.vue'], resolve);
 const UserCenterHome = resolve => require(['@/components/userCenter/userCenterHome.vue'], resolve);
+const Recharge = resolve => require(['@/components/recharge/recharge.vue'], resolve);
 Vue.use(Router);
 
 export default new Router({
@@ -26,6 +27,11 @@ export default new Router({
       path: '/userCenterHome',
       name: 'userCenterHome',
       component: UserCenterHome,
+    },
+    {
+      path: '/recharge',
+      name: 'recharge',
+      component: Recharge,
     }
   ],
 });
