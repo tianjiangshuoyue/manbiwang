@@ -10,7 +10,7 @@
             </section>
             <ul class="menu">
                 <li><router-link to="/userCenterHome">资产管理</router-link></li>
-                <li>充值</li>
+                <li><router-link to="/recharge??payWay=bankcard">充值</router-link></li>
                 <li>提现</li>
                 <li>充值/提现记录</li>
                 <li>账单流水</li>
