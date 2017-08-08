@@ -8,16 +8,18 @@
                 </header>
                 <my-assets></my-assets>
             </section>
-            
-            <section>
-                <header>
-                <h2 class="active-tab">会员中心</h2>
-                <user-center></user-center>
-            </header>
-            </section>
-            <section>
-                <header><h2 class="active-tab">账户与安全</h2></header>
-            </section>
+            <div>
+                <section>
+                    <header>
+                        <h2 class="active-tab">会员中心</h2>
+                        
+                    </header>
+                    <user-center></user-center>
+                </section>
+                <section>
+                    <header><h2 class="active-tab">账户与安全</h2></header>
+                </section>
+            </div>
         </main>
         <sidebar></sidebar>
     
