@@ -7,17 +7,18 @@
       <div :class="{active:isBinding}"><span>2</span>转账充值</div>
     </div>
     <div v-if="!isBinding" id="bindCardForm">
-      <p>
+      <div class="row">
         <label>汇款人:</label>
-        <el-input v-model="name" placeholder="您的真实姓名"></el-input>
-      </p>
-      <div v-show="false" class="warning">请输入正确的</div>
-      <p>
+        <el-input v-if="!isFilledInfo" v-model="name" placeholder="您的真实姓名"></el-input>
+        <div v-if="isFilledInfo" class="text-only">{{name}}</div>
+      </div>
+      <div v-if="!isFilledInfo"  v-show="false" class="warning">请输入正确的</div>
+      <div v-if="!isFilledInfo" class="row">
         <label>身份证:</label>
         <el-input :class="{warningBorder:idCardWrong}" v-model="idCardNum" placeholder="您的身份证号"></el-input>
-      </p>
-      <div v-show="true" class="warning">请输入正确的身份证号</div>
-      <p>
+      </div>
+      <div v-if="!isFilledInfo" v-show="true" class="warning">请输入正确的身份证号</div>
+      <div class="row">
         <label>开户行:</label>
         <el-select v-model="bankCode" placeholder="请选择开户行">
           <el-option
@@ -27,12 +28,12 @@
             :value="item.value">
           </el-option>
         </el-select>
-      </p>
+      </div>
       <div v-show="false" class="warning">请输入正确的</div>
-      <p>
+      <div class="row">
         <label>银行卡号:</label>
         <el-input v-model="bankcardNum" placeholder="您的银行卡号"></el-input>
-      </p>
+      </div>
       <div v-show="false" class="warning">请输入正确的</div>
       <el-button type="primary">确定</el-button>
     </div>
@@ -50,15 +51,15 @@
       </div>
       <div class="row">
         <label>收款人 :</label>
-        <div>{{receiveMan}}</div>
+        <div class="text-only">{{receiveMan}}</div>
       </div>
       <div class="row">
         <label>收款账号 :</label>
-        <div>{{receiveAccount}}</div>
+        <div class="text-only">{{receiveAccount}}</div>
       </div>
       <div class="row">
         <label>收款行 :</label>
-        <div>{{receiveBankCode}}</div>
+        <div class="text-only">{{receiveBankCode}}</div>
       </div>
     </div>
     <div id="underLine"></div>
@@ -78,6 +79,8 @@
   export default {
     data () {
       return {
+        //是否已经实名
+        isFilledInfo:false,
         //绑定以后的属性
         chosenBankcard: '工商银行 尾号8776',
         receiveMan: '北京必满盆投资咨询有限公司',
@@ -139,6 +142,9 @@
         if(e.keyCode==16){
           this.isBinding = !this.isBinding;
         }
+        if(e.keyCode==191){
+          this.isFilledInfo = !this.isFilledInfo;
+        }
       },false)
     }
   }
@@ -181,18 +187,19 @@
       }
     }
     #bindCardForm {
+      text-align: left;
+      padding-top: 40px;
       .warningBorder {
         input {
           border-color: #ff4033;
         }
       }
-      text-align: left;
-      padding-top: 40px;
-      p {
+      .row {
         height: 34px;
         margin-top: 20px;
         margin-bottom: 10px;
         input {
+          float: left;
           font-size: 14px;
           padding-left: 15px;
           border-radius: 2px;
@@ -212,13 +219,18 @@
         .el-input {
           width: 280px;
         }
+        .text-only {
+          float: left;
+          line-height: 34px;
+          font-size: 14px;
+        }
       }
-      div {
+      .warning {
         font-size: 12px;
         color: #ff4033;
         text-align: left;
-      }
-      .warning {
+        height:auto;
+        margin:0;
         text-indent: 190px;
       }
       button {
@@ -282,7 +294,7 @@
           font-size: 14px;
           line-height: 34px;
         }
-        div {
+        .text-only {
           float: left;
           line-height: 34px;
           font-size: 14px;
