@@ -1,5 +1,5 @@
 <template>
-  <div id="bankcardRecharge">
+  <div id="aliPayRecharge">
     <div id="bankcardProcess">
       <div>充值只需2步 :</div>
       <div class="active"><span>1</span>绑定支付宝</div>
@@ -7,57 +7,53 @@
       <div :class="{active:!isFirst}"><span>2</span>转账充值</div>
     </div>
     <div v-if="isFirst" id="bindCardForm">
-      <p>
+      <div class="row">
         <label>汇款人:</label>
-        <el-input v-model="name" placeholder="您的真实姓名"></el-input>
-      </p>
-      <div v-show="false" class="warning">请输入正确的</div>
-      <p>
+        <el-input v-if="!isFilledInfo" v-model="name" placeholder="您的真实姓名"></el-input>
+        <div v-if="isFilledInfo" class="text-only">{{name}}</div>
+      </div>
+      <div v-if="!isFilledInfo" v-show="false" class="warning">请输入正确的</div>
+      <div v-if="!isFilledInfo" class="row">
         <label>身份证:</label>
         <el-input :class="{warningBorder:idCardWrong}" v-model="idCardNum" placeholder="您的身份证号"></el-input>
-      </p>
-      <div v-show="true" class="warning">请输入正确的身份证号</div>
-      <p>
+      </div>
+      <div v-if="!isFilledInfo" v-show="true" class="warning">请输入正确的身份证号</div>
+      <div class="row">
         <label>支付宝号:</label>
         <el-input v-model="alipayAccount" placeholder="优先填写邮箱账号"></el-input>
-      </p>
+      </div>
       <div v-show="false" class="warning">请输入正确的</div>
-      <p>
+      <div class="row">
         <label>充值金额:</label>
         <el-input v-model="rechargeNum" placeholder="100-5000元"></el-input>
-      </p>
+      </div>
       <div v-show="false" class="warning">请输入正确的</div>
       <el-button type="primary">生成订单</el-button>
     </div>
-    <div v-if="!isFirst" id="useBankCard">
-      <div class="row">
-        <label>银行卡 :</label>
-        <el-select id="chooseBankcard" v-model="chosenBankcard" :placeholder="chosenBankcard">
-          <el-option
-            v-for="item in cardOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-      </div>
+    <div v-if="!isFirst" id="useAlipay">
       <div class="row">
         <label>收款人 :</label>
-        <div>{{receiveMan}}</div>
+        <div class="text-only">{{receiveMan}}</div>
       </div>
       <div class="row">
         <label>收款账号 :</label>
-        <div>{{receiveAccount}}</div>
+        <div class="text-only">{{receiveAccount}}</div>
       </div>
       <div class="row">
-        <label>收款行 :</label>
-        <div>{{receiveBankCode}}</div>
+        <label>汇款账号 :</label>
+        <div class="text-only">{{alipayAccount}}</div>
+      </div>
+      <div class="erweima">
+        <img src="../../../assets/img/erweima.png">
+      </div>
+      <div class="row">
+        <label>汇款金额 :</label>
+        <div class="text-only cashNum">￥{{payNum|currency}}</div>
       </div>
     </div>
     <div id="underLine"></div>
     <div id="declare">
-      <h2>充值须知 :<span v-show="!showDeclare&&isFirst" @click="switchDeclare">展开 <span class="el-icon-arrow-up"></span></span><span
-        v-show="showDeclare&&isFirst" @click="switchDeclare">收起 <span class="el-icon-arrow-down"></span></span></h2>
+      <h2>充值须知 :</h2>
       <div v-show="showDeclare">
         1. 仅限您本人的支付宝汇款充值。<br>
         2. 生成订单后，请您根据提示的信息，将您要充值的金额汇入指定的支付宝账户。我们在收到款项后30分钟内会为您完成充值入账。<br>
@@ -65,17 +61,63 @@
         4. 不符合上述规定的充值，将于10个工作日内原路退回，如果您的资金超过10个工作日尚未退回，请联系客服010-1234-5678。
       </div>
     </div>
+    <div v-if="!isFirst" id="rechargeLog">
+      <h2>充值记录</h2>
+      <el-table
+        :data="tableData"
+        style="width: 100%">
+        <el-table-column
+          prop="date"
+          label="入账时间"
+          width="135">
+        </el-table-column>
+        <el-table-column
+          prop="payWay"
+          label="充值方式"
+          width="135">
+        </el-table-column>
+        <el-table-column
+          prop="cashNum"
+          label="金额"
+          width="135">
+        </el-table-column>
+        <el-table-column
+          prop="detail"
+          label="详情"
+          width="135">
+        </el-table-column>
+        <el-table-column
+          prop="tips"
+          label="备注"
+          width="135">
+        </el-table-column>
+        <el-table-column
+          prop="status"
+          label="状态"
+          width="135">
+        </el-table-column>
+        <el-table-column
+          prop="option"
+          label="操作">
+          <template scope="scope">
+            <span class="tBtn">撤销</span>
+            <span class="tBtn">认证</span>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
   </div>
 </template>
 <script>
   export default {
     data () {
       return {
+        //是否已经实名
+        isFilledInfo: false,
         //绑定以后的属性
-        chosenBankcard: '工商银行 尾号8776',
         receiveMan: '北京必满盆投资咨询有限公司',
-        receiveAccount: '6212 2000 0010 300 5282',
-        receiveBankCode: '工商银行海淀西区支行',
+        receiveAccount: 'manbiwang@alipay.com',
+        payNum: 0,
         cardOptions: [{
           value: '选项1',
           label: '黄金糕'
@@ -92,12 +134,33 @@
           value: '选项5',
           label: '北京烤鸭'
         }],
+        tableData: [{
+          date: '2016-05-02',
+          payWay: '王小虎',
+          cashNum: '￥1000',
+          detail: '上海市普陀区金沙江路',
+          tips: '1518 弄',
+          status: '等待汇出',
+          option: ''
+        }, {
+          date: '2016-05-04',
+          payWay: '王小虎',
+          cashNum: ''
+        }, {
+          date: '2016-05-01',
+          payWay: '王小虎',
+          cashNum: ''
+        }, {
+          date: '2016-05-03',
+          payWay: '王小虎',
+          cashNum: ''
+        }],
         //首次支付宝充值
         showDeclare: true,
         isFirst: true,
         name: '',
         idCardNum: '',
-        idCardWrong:true,
+        idCardWrong: true,
         alipayAccount: '',
         rechargeNum: '',
         bankCodeOptions: [{
@@ -124,21 +187,19 @@
         this.showDeclare = !this.showDeclare;
       }
     },
-    components: {
-
-    },
+    components: {},
     mounted(){
-      document.addEventListener('keydown',(e)=>{
+      document.addEventListener('keydown', (e)=> {
         console.log(e.keyCode);
-        if(e.keyCode==16){
+        if (e.keyCode == 16) {
           this.isFirst = !this.isFirst;
         }
-      },false)
+      }, false)
     }
   }
 </script>
 <style lang="less" rel="stylesheet/less">
-  #bankcardRecharge {
+  #aliPayRecharge {
     padding: 5px;
     #bankcardProcess {
       width: 740px;
@@ -182,7 +243,7 @@
       }
       text-align: left;
       padding-top: 40px;
-      p {
+      .row {
         height: 34px;
         margin-top: 20px;
         margin-bottom: 10px;
@@ -207,12 +268,10 @@
           width: 280px;
         }
       }
-      div {
+      .warning {
         font-size: 12px;
         color: #ff4033;
         text-align: left;
-      }
-      .warning {
         text-indent: 190px;
       }
       button {
@@ -263,7 +322,7 @@
         line-height: 20px;
       }
     }
-    #useBankCard {
+    #useAlipay {
       padding-top: 40px;
       .row {
         margin-top: 20px;
@@ -276,11 +335,16 @@
           font-size: 14px;
           line-height: 34px;
         }
-        div {
+        .text-only {
           float: left;
           line-height: 34px;
           font-size: 14px;
         }
+        .cashNum {
+          color: #ff5722;
+          font-size: 14px;
+        }
+
         #chooseBankcard {
           float: left;
           width: 280px;
@@ -291,6 +355,47 @@
       }
       ::-webkit-input-placeholder {
         color: #222;
+      }
+      .erweima {
+        margin-left: 190px;
+        text-align: left;
+        margin-top: 20px;
+        img {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    }
+
+    #rechargeLog {
+
+      h2 {
+        height: 19px;
+        font-size: 14px;
+        color: #222;
+        font-family: '微软雅黑';
+        text-align: left;
+        margin-top: 0;
+      }
+      table {
+        text-align: center;
+        font-size: 12px;
+        thead{
+          height:36px;
+        }
+        tr{
+          height:48px;
+        }
+        th {
+          text-align: center;
+        }
+        td{
+        }
+        .tBtn{
+          color:#1793e6;
+          margin:0 3px;
+          cursor:pointer;
+        }
       }
     }
 
