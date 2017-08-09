@@ -2,22 +2,22 @@
     <div>
         <main>
             <section>
-                <header id="assets-wrap">
-                    <h2 class="active-tab">我的资产</h2>
+                <header id="assets-wrap" class="active-tab">
+                    <h2 >我的资产</h2>
                     
                 </header>
                 <my-assets></my-assets>
             </section>
             <div id="center-wrap">
                 <section>
-                    <header>
-                        <h2 class="active-tab">会员中心</h2>
+                    <header class="active-tab">
+                        <h2 >会员中心</h2>
                         
                     </header>
                     <user-center></user-center>
                 </section>
                 <section>
-                    <header><h2 class="active-tab">账户与安全</h2></header>
+                    <header class="active-tab"><h2 >账户与安全</h2></header>
                 </section>
             </div>
         </main>

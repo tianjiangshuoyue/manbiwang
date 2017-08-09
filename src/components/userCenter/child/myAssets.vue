@@ -1,30 +1,31 @@
 <template>
-    <div id="my-assets">
+    <div id="my-assets-wrap">
         <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
         <div id="assets-chart-wrap">
-            <div id="assets-chart" style="width:200px;height:200px;">
+            <div id="assets-chart" style="width:250px;height:250px;">
             </div>
         </div>
-        <div>
+        <div id="data-wrap">
             <header id="assets-value">
                 
                 总资产:
-                <em >16000</em>
+                <em >¥ 16000.00</em>
             </header>
-            <ul>
-                <li class="title">
-                    <span></span>
-                    <span>持有</span>
-                    <span>市值</span>
-                </li>
-                 <li v-for="item in 6">
-                    <span><i></i>人民币</span>
-                    <span>127</span>
-                    <span>¥127</span>
-                </li>
-                
-            </ul>
-            
+            <table id="assets-list">
+                <thead class="title">
+                    <th></th>
+                    <th>持有</th>
+                    <th>市值</th>
+                </thead>
+                <tbody>
+                    <tr v-for="item in 6">
+                        <td>人民币</td>
+                        <td>127</td>
+                        <td>¥127</td>
+                    </tr>
+                </tbody>
+                </table>
+
             <footer>
                 <el-button type="primary">充值</el-button>
                 <el-button type="text">提现</el-button>
@@ -129,11 +130,25 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-#my-assets{
+#data-wrap {
+    padding-left: 20px;
+    border-left: solid 1px #f2f2f2;
+}
+#my-assets-wrap{
     display: flex;
+    color: #222;
     >div {
         width: 48%;
     }
+}
+#assets-chart-wrap {
+    position: relative;
+}
+#assets-chart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 #assets-value {
     padding: 20px 0;
@@ -144,17 +159,29 @@ export default {
     }
     
 }
-.title {
-    background-color: #f7f7f7;
-    color: #999999;
-}
-ul {
-    text-align: center;
+#assets-list {
+    width: 100%;
+     text-align: center;
     color: #222222;
-    li {
-        padding: 10px 0;
+    border-collapse: collapse;
+    thead {
+        background-color: #f7f7f7;
+        color: #999999;
+    }
+    th {
+        &:first-child {
+            width: 20%;
+            padding-left: 1%;
+        }
+    }
+    td {
+         padding: 10px 0;
         border-bottom: solid 1px #f2f2f2;
-        i {
+         span {
+            display: inline-block;
+            width: 32%;
+        }
+         i {
             display: inline-block;
             width: 6px;
             height: 6px;
@@ -164,10 +191,6 @@ ul {
             &.yitebi {
                 background: #fb84b4;
             }
-        }
-        span {
-            display: inline-block;
-            width: 32%;
         }
     }
 }
