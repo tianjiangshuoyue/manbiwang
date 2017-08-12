@@ -1,12 +1,20 @@
 <template>
   <div id="app">
-    <header>欢迎您，<span>123@manbi.wang </span><span>退出</span>
-      <div>满币网
-        <router-link to="/">首页</router-link>
-        <router-link to="/">用户中心</router-link>
+      <header>欢迎您，<span>123@manbi.wang </span><span>退出</span></header>
+      
+    
+      <div id="main-wrap">
+        <header>
+          <h1>满币网</h1>
+          <section>
+            <router-link to="/">首页</router-link>
+            <router-link id="usercenter-forward" to="/">用户中心</router-link>
+            </section>
+        </header>
+        
+        <router-view></router-view>
       </div>
-    </header>
-    <router-view></router-view>
+    
   </div>
 </template>
 
@@ -25,9 +33,27 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+#main-wrap {
+  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
+  >header {
+    position: relative;
+    height: 60px;
+    line-height: 60px;
+    text-align: right;
+    color: #333;
+    >h1 {
+      position: absolute;
+      left: 0;
+    }
+    >section {
+      font-weight: bold;
+    }
+  }
+}
 #app>header {
   height: 30px;
-  margin-bottom: 80px;
   padding-right: 130px;
   line-height: 30px;
   background-color: #4c5861;
@@ -37,5 +63,8 @@ export default {
   >span {
     color: #fff;
   }
+}
+#usercenter-forward {
+  color: #4182ef;
 }
 </style>

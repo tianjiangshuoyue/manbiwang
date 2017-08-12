@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import store from './vuex';
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import VeeValidate, { Validator } from 'vee-validate';
@@ -29,6 +30,7 @@ Vue.use(VeeValidate, config);
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App },
 });

@@ -1,8 +1,14 @@
 <template>
-<div>
+<div id="user-center-wrap">
+                    <header class="active-tab">
+                        <h2 >会员中心</h2>
+                        
+                    </header>
+<div >
     欢迎您，尊敬的<div class="level"><em>V</em><span>2</span></div>黄金会员，张小姐。<br>
     当前手续费优惠(8折)，会员有效期2017.7.31<br>
-    本月交易额 <span class="money">32985</span> 元，还差 <span class="money">48762</span> 元可升为         白金会员。
+    本月交易额 <span class="money">32985</span> 元，还差 <span class="money">48762</span> 元可升为
+    <span id="upgrade-level">白金会员。</span>
     <ul id="menber-list">
         <li class="title">
             <span>会员等级</span> <span>月交易额（￥）</span><span>交易手续费优惠</span><span>提现(人民币)费率</span>
@@ -15,6 +21,7 @@
         </li>
     </ul>
 </div>
+</div>
 </template>
 <script>
 export default {
@@ -26,6 +33,10 @@ export default {
 }
 </script>
 <style scoped lang="less">
+#user-center-wrap {
+    width: 480px;
+    margin-right: 20px;
+}
 div {
     text-align: left;
 }
@@ -54,5 +65,8 @@ div {
         display: inline-block;
         width: 19%;
     }
+}
+#upgrade-level {
+    color: #999;
 }
 </style>

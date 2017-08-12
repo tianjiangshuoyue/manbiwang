@@ -9,13 +9,8 @@
                 <my-assets></my-assets>
             </section>
             <div id="center-wrap">
-                <section>
-                    <header class="active-tab">
-                        <h2 >会员中心</h2>
-                        
-                    </header>
+               
                     <user-center></user-center>
-                </section>
                 <section>
                     <header class="active-tab"><h2 >账户与安全</h2></header>
                 </section>
@@ -55,7 +50,6 @@ main {
     left: 200px;
     right: 0;
 }
-
 #assets-wrap {
     width: 100%;
 }

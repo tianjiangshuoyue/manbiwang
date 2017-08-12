@@ -13,15 +13,15 @@
             </header>
             <table id="assets-list">
                 <thead class="title">
-                    <th></th>
-                    <th>持有</th>
-                    <th>市值</th>
+                    <th class="col1"></th>
+                    <th class="col2">持有</th>
+                    <th class="col3">市值</th>
                 </thead>
                 <tbody>
                     <tr v-for="item in 6">
-                        <td>人民币</td>
-                        <td>127</td>
-                        <td>¥127</td>
+                        <td class="col1"><i></i>人民币</td>
+                        <td class="col2">10,000,400.00</td>
+                        <td class="col3">¥127</td>
                     </tr>
                 </tbody>
                 </table>
@@ -151,7 +151,7 @@ export default {
     transform: translate(-50%, -50%);
 }
 #assets-value {
-    padding: 20px 0;
+    padding-bottom: 20px;
     em {
         font-size: 20px;
         color: #4182ef;
@@ -165,22 +165,37 @@ export default {
     color: #222222;
     border-collapse: collapse;
     thead {
+        
         background-color: #f7f7f7;
         color: #999999;
     }
+    th, td {
+        text-align: left;
+    }
     th {
+        height: 40px;
         &:first-child {
             width: 20%;
             padding-left: 1%;
         }
     }
+    .col1 {
+        width: 28%;
+        padding-left: 20px;
+        padding-right: 40px;
+    }
+    .col2 {
+        width: 30%;
+    //    padding-left: 40px;
+    //    padding-right: 60px;
+    }
     td {
-         padding: 10px 0;
+        padding: 10px 0;
         border-bottom: solid 1px #f2f2f2;
-         span {
-            display: inline-block;
-            width: 32%;
+        &:td {
+            padding-left: 5%;
         }
+         
          i {
             display: inline-block;
             width: 6px;
