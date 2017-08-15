@@ -376,7 +376,7 @@
         color: #222;
         font-family: '微软雅黑';
         text-align: left;
-        margin-top: 0;
+        margin-bottom: 10px;
       }
       table {
         text-align: center;
