@@ -105,6 +105,7 @@
           </template>
         </el-table-column>
       </el-table>
+      <div class="showRecordText">仅显示最新10条充值记录，如需查询全部充值记录，请去<a href="">充值/提现记录</a></div>
     </div>
   </div>
 </template>
@@ -396,6 +397,22 @@
           margin:0 3px;
           cursor:pointer;
         }
+      }
+    }
+
+    .showRecordText{
+      width: 940px;
+      height: 56px;
+      line-height: 56px;
+      background-color: #f5f9ff;
+      border: solid 1px #d7e5f4;
+      font-size: 12px;
+      color:#666;
+      margin-top:10px;
+      text-align: left;
+      text-indent: 20px;
+      a{
+
       }
     }
 
