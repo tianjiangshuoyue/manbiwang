@@ -1,18 +1,18 @@
 <template>
     <div id="user-wrap">
-        <sidebar1></sidebar1>
+        <sidebar></sidebar>
         <router-view></router-view>
     </div>
 </template>
 <script>
-import sidebar1 from '../common/leftSideBar.vue';
+import sidebar from '../common/leftSideBar.vue';
 export default {
     data () {
         return {
             test: 'test'
         }
     }, components: {
-        sidebar1
+        sidebar
     }
 }
 </script>
