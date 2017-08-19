@@ -7,7 +7,7 @@
             注册。
         </p>
         <p class="item">
-            安全设置
+            <router-link to="/secureSetting">安全设置</router-link>
         </p>
     </section>
     <ul class="menu">

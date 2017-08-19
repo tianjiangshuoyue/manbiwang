@@ -18,6 +18,9 @@
   </div>
 </template>
 <script>
+  /**
+   * @file: 充值
+   */
   import sidebar from '../common/leftSideBar.vue';
   import bankcard from './children/bankcard.vue';
   import alipay from './children/alipay.vue';

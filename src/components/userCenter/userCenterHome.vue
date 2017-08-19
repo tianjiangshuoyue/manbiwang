@@ -10,13 +10,12 @@
             </section>
             <div id="center-wrap">
                
-                    <user-center></user-center>
+                    <center></center>
                 <section>
                     <header class="active-tab"><h2 >账户与安全</h2></header>
                 </section>
             </div>
         </main>
-        <sidebar></sidebar>
     
     </div>
 </template>
@@ -25,8 +24,8 @@
  * file 用户中心首页-资产管理
  */
 import myAssets from './child/myAssets.vue';
-import userCenter from './child/userCenter.vue';
-import sidebar from '../common/leftSideBar.vue';
+import center from './child/userCenter.vue';
+
 export default {
     data () {
         return {
@@ -36,8 +35,7 @@ export default {
 
     },components: {
         myAssets,
-        sidebar,
-        userCenter
+        center
     }
 }
 </script>
