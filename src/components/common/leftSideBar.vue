@@ -7,11 +7,11 @@
             注册。
         </p>
         <p class="item">
-            <router-link to="/secureSetting">安全设置</router-link>
+            <router-link to="/userCenter/secureSetting">安全设置</router-link>
         </p>
     </section>
     <ul class="menu">
-        <li><router-link to="/userCenterHome">资产管理</router-link></li>
+        <li><router-link to="/userCenter/home">资产管理</router-link></li>
         <li><router-link to="/recharge??payWay=bankcard">充值</router-link></li>
         <li>提现</li>
         <li>充值/提现记录</li>

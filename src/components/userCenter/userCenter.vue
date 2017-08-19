@@ -1,22 +1,23 @@
 <template>
-    <div>
-        神鬼天籁
-        <sidebar></sidebar>
+    <div id="user-wrap">
+        <sidebar1></sidebar1>
         <router-view></router-view>
     </div>
 </template>
 <script>
-import sidebar from '../common/leftSideBar.vue';
+import sidebar1 from '../common/leftSideBar.vue';
 export default {
     data () {
         return {
-
+            test: 'test'
         }
     }, components: {
-        sidebar
+        sidebar1
     }
 }
 </script>
 <style>
-
+#user-wrap {
+    display: flex;
+}
 </style>

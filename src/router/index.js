@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import Hello from '@/components/Hello';
 const Register = resolve => require(['@/components/user/register.vue'], resolve);
 const Login = resolve => require(['@/components/user/login.vue'], resolve);
-const UserCenter = resolve => require(['@/components/userCenter/userCenter.vue'], resolve);
+import UserCenter from '@/components/userCenter/userCenter.vue';
 const UserCenterHome = resolve => require(['@/components/userCenter/userCenterHome.vue'], resolve);
 const SecureSetting = resolve => require(['@/components/secureSetting.vue'], resolve);
 const Widthdraw = resolve => require(['@/components/withdraw/withdraw.vue'], resolve);
@@ -14,41 +14,37 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/register'
+      redirect: '/user'
     },
     {
       path: '/register',
-      name: 'Rigster',
       component: Register,
     },
     {
       path: '/login',
-      name: 'Login',
       component: Login,
     },
     {
-      path: '/userCenter',
-      components: UserCenter,
+      path: '/userCenter/',
+      component: UserCenter,
       children: [
         {
-          path: '/userCenter/home',
+          path: 'home',
           component: UserCenterHome,
+        },
+        {
+          path: 'secureSetting',
+          component: SecureSetting,
         },
       ]
     },
-    {
-      path: '/secureSetting',
-      name: 'secureSetting',
-      component: SecureSetting,
-    },
+    
     {
       path: '/withdraw',
-      name: 'withdraw',
       component: Widthdraw,
     },
     {
       path: '/recharge',
-      name: 'recharge',
       component: Recharge,
     }
   ],
