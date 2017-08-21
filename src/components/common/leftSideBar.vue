@@ -16,11 +16,12 @@
         <li><router-link to="/userCenter/withdraw">提现</router-link></li>
         <li><router-link to="/userCenter/rechargeWithdrawRecordList">充值/提现记录</router-link></li>
         <li>账单流水</li>
-        <li>银地址/地址管理</li>
+        <li>银行卡/地址管理</li>
     </ul>
     <ul class="menu">
-        <li>会员等级</li>
-        <li>VIP等级</li>
+        <li>会员中心</li>
+        <li>我的会员</li>
+        <li>扑满币抵扣</li>
     </ul>
     <ul class="menu">
         <li>API管理</li>
