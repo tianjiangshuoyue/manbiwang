@@ -13,8 +13,8 @@
     <ul class="menu">
         <li><router-link to="/userCenter/home">资产管理</router-link></li>
         <li><router-link to="/recharge??payWay=bankcard">充值</router-link></li>
-        <li>提现</li>
-        <li>充值/提现记录</li>
+        <li><router-link to="/userCenter/withdraw">提现</router-link></li>
+        <li><router-link to="/userCenter/rechargeWithdrawRecordList">充值/提现记录</router-link></li>
         <li>账单流水</li>
         <li>银地址/地址管理</li>
     </ul>

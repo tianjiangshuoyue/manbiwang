@@ -1,5 +1,5 @@
 <template>
-    <button :disabled="disabled" :class="classes" :style="{backgroundColor: bgcolor, color: color}">
+    <button :disabled="disabled" :class="classes" :style="{backgroundColor: bgcolor, color: color}" type="button">
         <slot></slot>
     </button>
 </template>

@@ -39,10 +39,12 @@ export default {
   margin: 0 auto;
   >header {
     position: relative;
+    margin-bottom: 20px;
     height: 60px;
     line-height: 60px;
     text-align: right;
     color: #333;
+    box-shadow: 0 2px 4px 0 #e7ecf0;
     >h1 {
       position: absolute;
       left: 0;

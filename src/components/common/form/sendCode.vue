@@ -1,6 +1,7 @@
 <template>
     
      <C-button :size="size"
+        
         name="sendCode"
                :type="type"
                :disabled="start"
@@ -41,6 +42,7 @@
                 type: String,
                 default: '重新获取验证码'
             },
+            
             value: {
                 type: Boolean,
                 default: false

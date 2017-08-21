@@ -50,6 +50,9 @@
   }
 </script>
 <style lang="less" rel="stylesheet/less" scoped>
+.el-select {
+  width: auto;
+}
   aside {
     width: 180px;
   }

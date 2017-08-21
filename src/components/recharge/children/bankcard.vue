@@ -149,7 +149,10 @@
     }
   }
 </script>
-<style lang="less" rel="stylesheet/less">
+<style lang="less" rel="stylesheet/less" scoped>
+.el-select {
+  width: auto;
+}
   #bankcardRecharge {
     padding: 5px;
     #bankcardProcess {

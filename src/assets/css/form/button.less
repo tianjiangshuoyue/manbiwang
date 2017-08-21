@@ -1,6 +1,38 @@
+// normal button
 button {
-  width: 92px;
   height: 36px;
+  border-radius: 4px;
+  background-color: #4182ef;
+  &:hover {
+    background-color: #2e6bd3;
+  }
+  &:active {
+    background-color: #2b64c5;
+    
+  }
+  &[disabled] {
+    background-color: #99befb;
+  }
+  
+}
+button.m {
+  width: 150px;
+}
+// .btn, .el-button--primary {
+//   height: 36px;
+//   line-height: 36px;
+// }
+// .el-button--primary {
+//   height: 20!important;
+//   line-height: 36px!important;
+// }
+// small button
+button.s {
+  background-color: #99befb;
+}
+// cancel btn 
+button.cancel {
+  background-color: #99befb;
 }
 .btn, .el-button--primary {
   height: 44px;
@@ -12,7 +44,7 @@ button {
   &.large {
     height: 44px;
   }
-  &.large {
+  &.long {
     display: block;
     width: 280px;
     margin: 20px auto 10px;

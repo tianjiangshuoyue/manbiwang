@@ -6,7 +6,11 @@ const Login = resolve => require(['@/components/user/login.vue'], resolve);
 import UserCenter from '@/components/userCenter/userCenter.vue';
 const UserCenterHome = resolve => require(['@/components/userCenter/userCenterHome.vue'], resolve);
 const SecureSetting = resolve => require(['@/components/secureSetting.vue'], resolve);
+// 提现
 const Widthdraw = resolve => require(['@/components/withdraw/withdraw.vue'], resolve);
+const notId = resolve => require(['@/components/withdraw/notId.vue'], resolve);
+const rechargeWithdrawRecordList = resolve => require(['@/components/userCenter/rechargeWithdrawRecordList.vue'], resolve);
+
 const Recharge = resolve => require(['@/components/recharge/recharge.vue'], resolve);
 Vue.use(Router);
 
@@ -14,7 +18,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/user'
+      redirect: '/userCenter/home'
     },
     {
       path: '/register',
@@ -36,13 +40,25 @@ export default new Router({
           path: 'secureSetting',
           component: SecureSetting,
         },
+        {
+          path: 'withdraw',
+          component: Widthdraw,
+          children: [
+            {
+              path: 'notId',
+              component: notId
+            }
+            
+          ]
+        },
+        {
+          path: 'rechargeWithdrawRecordList',
+          component: rechargeWithdrawRecordList
+        }
       ]
     },
     
-    {
-      path: '/withdraw',
-      component: Widthdraw,
-    },
+    
     {
       path: '/recharge',
       component: Recharge,

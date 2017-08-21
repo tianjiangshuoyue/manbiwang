@@ -1,7 +1,9 @@
 <template>
     <div id="user-wrap">
         <sidebar></sidebar>
-        <router-view></router-view>
+        <div id="user-main">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 <script>
@@ -18,6 +20,13 @@ export default {
 </script>
 <style>
 #user-wrap {
+    position: relative;
     display: flex;
+    width: 1180px;
+    margin: 0 auto;
+}
+#user-main {
+    width: 980px;
+    margin-left: 20px;
 }
 </style>
