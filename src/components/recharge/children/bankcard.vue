@@ -14,7 +14,7 @@
       </div>
       <div v-if="!isFilledInfo"  v-show="false" class="warning">请输入正确的</div>
       <div v-if="!isFilledInfo" class="row">
-        <label>身份证:</label>
+        <label>身份证号:</label>
         <el-input :class="{warningBorder:idCardWrong}" v-model="idCardNum" placeholder="您的身份证号"></el-input>
       </div>
       <div v-if="!isFilledInfo" v-show="true" class="warning">请输入正确的身份证号</div>
@@ -38,29 +38,42 @@
       <el-button type="primary">确定</el-button>
     </div>
     <div v-if="isBinding" id="useBankCard">
-      <div class="row">
-        <label>银行卡 :</label>
-        <el-select id="chooseBankcard" v-model="chosenBankcard" :placeholder="chosenBankcard">
-          <el-option
-            v-for="item in cardOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
+      <div class="leftBox">
+        <h2>使用绑定的银行卡</h2>
+        <div class="row">
+          <label style="padding-top:10px;">银行卡 :</label>
+          <el-select id="chooseBankcard" v-model="chosenBankcard" :placeholder="chosenBankcard">
+            <el-option
+              v-for="item in cardOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </div>
       </div>
-      <div class="row">
-        <label>收款人 :</label>
-        <div class="text-only">{{receiveMan}}</div>
+      <div class="leftBox rightBox">
+        <h2>向下列账户转账</h2>
+        <div class="row">
+          <label>收款人 :</label>
+          <div class="text-only">{{receiveMan}}</div>
+          <button v-clipboard:copy="receiveMan"
+                  v-clipboard:success="onCopy" class="copyText">复制</button>
+        </div>
+        <div class="row">
+          <label>收款账号 :</label>
+          <div class="text-only">{{receiveAccount}}</div>
+          <button v-clipboard:copy="receiveAccount"
+                  v-clipboard:success="onCopy" class="copyText">复制</button>
+        </div>
+        <div class="row">
+          <label>收款行 :</label>
+          <div class="text-only">{{receiveBankCode}}</div>
+          <button v-clipboard:copy="receiveBankCode"
+                  v-clipboard:success="onCopy" class="copyText">复制</button>
+        </div>
       </div>
-      <div class="row">
-        <label>收款账号 :</label>
-        <div class="text-only">{{receiveAccount}}</div>
-      </div>
-      <div class="row">
-        <label>收款行 :</label>
-        <div class="text-only">{{receiveBankCode}}</div>
-      </div>
+
     </div>
     <div id="underLine"></div>
     <div id="declare">
@@ -104,7 +117,7 @@
         }],
         //未绑定状态属性
         showDeclare: true,
-        isBinding: false,
+        isBinding: true,
         name: '',
         idCardNum: '',
         bankcardNum: '',
@@ -129,6 +142,15 @@
       }
     },
     methods: {
+      onCopy(){
+        const h = this.$createElement;
+        this.$message({
+          message: h('p', null, [
+            h('span', null, '复制成功!'),
+          ]),
+          type: 'success'
+        });
+      },
       switchDeclare(){
         this.showDeclare = !this.showDeclare;
       }
@@ -149,6 +171,28 @@
     }
   }
 </script>
+<style lang="less" rel="stylesheet/less">
+  .leftBox{
+    width: 440px;
+    height: 177px;
+    border-radius: 2px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08), inset 0 4px 0 0 #4182ef;
+    float: left;
+    h2{
+      font-size: 12px;
+      color:#666;
+      height:38px;
+      line-height: 38px;
+      width:90%;
+      margin:0 auto;
+      border-bottom: dashed 1px #d9d9d9;
+    }
+  }
+  .rightBox{
+    margin-left:60px;
+  }
+</style>
 <style lang="less" rel="stylesheet/less" scoped>
 .el-select {
   width: auto;
@@ -257,8 +301,11 @@
       width: 940px;
       border: solid 1px #e7ecf0;
       margin-top: 40px;
+      float: left;
     }
     #declare {
+      width:100%;
+      float: left;
       padding-top: 10px;
       padding-bottom: 20px;
       text-align: left;
@@ -267,11 +314,13 @@
         font-size: 14px;
         color: #222;
         font-family: '微软雅黑';
+        margin-bottom:10px;
         span {
           float: right;
           color: #4182ef;
           cursor: pointer;
           font-size: 14px;
+          font-family: '微软雅黑';
           span {
             float: none;
             font-size: 12px;
@@ -288,21 +337,38 @@
       padding-top: 40px;
       .row {
         margin-top: 20px;
-        height: 34px;
+        height:16px;
+        line-height: 16px;
+        .copyText{
+          float: right;
+          margin-right:20px;
+          font-size: 14px;
+          color: #1793e6;
+          cursor: pointer;
+          background: none;
+          font-family: '微软雅黑';
+          border:none;
+          height:16px;
+          line-height: 16px;
+          outline: none;
+        }
         label {
-          width: 170px;
+          width: 100px;
           margin-right: 20px;
           float: left;
           text-align: right;
           font-size: 14px;
-          line-height: 34px;
+          color:#222;
+          font-family: '微软雅黑';
         }
         .text-only {
+          font-family: '微软雅黑';
           float: left;
-          line-height: 34px;
           font-size: 14px;
+          color:#222;
         }
         #chooseBankcard {
+          font-family: '微软雅黑';
           float: left;
           width: 280px;
           height: 34px;
@@ -311,6 +377,7 @@
         }
       }
       ::-webkit-input-placeholder {
+        font-family: '微软雅黑';
         color: #222;
       }
     }
