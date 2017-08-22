@@ -1,4 +1,4 @@
-import { isPhone, isPassword } from './regex.js';
+import validate from './regex.js';
 
 export default {
     mobile: {
@@ -9,9 +9,9 @@ export default {
         //      return value.length == 11 && /^((13|14|15|17|18)[0-9]{1}\d{8})$/.test(value)
         //   }
         messages: {
-            zh_CN: (field, args) => '请输入正确的手机号',
+            zh_CN: (field, args) => '请输入正确手机号',
         },
-        validate: isPhone
+        validate: validate.isPhone
     },
     password: {
         //  messages: {
@@ -21,9 +21,9 @@ export default {
              return value.length == 11 && /^((13|14|15|17|18)[0-9]{1}\d{8})$/.test(value)
         },
         messages: {
-            zh_CN: (field, args) => '请输入正确的密码',
+            zh_CN: (field, args) => '密码错误',
         },
-        validate: isPassword
+        validate: validate.isPassword
     },
     sendCode: {
         //  messages: {

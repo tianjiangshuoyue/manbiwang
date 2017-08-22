@@ -1,7 +1,14 @@
 /**
  * 正则(主要用于校验表单)
  */
-
+export default {
+  isPassword (str) { // password
+    return /^([0-9a-zA-Z]){6,20}$/.test(str);
+  },
+  isPhone (str) {
+    return /^1[3|4|5|7|8][0-9]\d{4,8}$/.test(str);
+  }
+}
 /**
  * 是不是银行卡卡号
  * @return {Boolean} [返回true代表是银行卡号,否则为false]
@@ -9,13 +16,8 @@
 export function isBankNumber (str) {
   return /\d{16,19}/.test(str);
 }
-/**
- * 是否是密码
- * @return {Boolean} [description]
- */
-export function isPassword (str) {
-  return /^([0-9a-zA-Z]){6,20}$/.test(str);
-}
+
+
 /**
  * 是否是新规范密码
  * @param  {String}  str [description]
@@ -102,14 +104,7 @@ export function checkLength (str) {
 export function checkQQ (str) {
   return /^[1-9][0-9]{3,8}$/.test(str);
 }
-/**
- * 验证用户的手机号
- * @param  int cellPhone 用户的手机号码
- * @return boolean           格式正确返回true,否则返回false
- */
-export function isPhone (cellPhone) {
-  return /^0?(13[0-9]|15[012356789]|17[0135678]|18[0-9]|14[57])[0-9]{8}$/.test(cellPhone);
-}
+
 
 /**
  * 验证带有区号的固定电话

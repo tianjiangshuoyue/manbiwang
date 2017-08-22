@@ -3,12 +3,14 @@
     <div>
         <div class="input_container">
             <input type="password"
-                 @input="passwordInput" v-model="password" placeholder="6-20位字母和数字" />
+                maxlength="20"
+                 @input="passwordInput" v-model="passwordValue" placeholder="6-20位字母和数字" />
+                 <i :class="['iconfont', passwordType == 'password' ? 'icon-see-close' : 'icon-see-show']" @click="changePassword"></i>
             <span v-bind:class="{ valid_password_length: valid_password_length , show_password_length: isPass}"
                 class="password_length">
                 {{passwordScore}}
             </span>
-        </div>
+        </div> 
         <div v-if="isPass" class="lnu_container">
             <p v-bind:class="{ lovercase_valid: passwordScore < 7 }">弱</p>
             <p v-bind:class="{ number_valid: passwordScore > 6 && passwordScore < 10 }">中</p>
@@ -40,9 +42,10 @@
 大于10分，强
  */
 export default {
+    props:['password'],
     data() {
         return {
-            password: null, // 用户输入的密码
+            passwordValue: this.password,
             password_length: 0,
             passwordScore: 0,
             isPass: false, // 密码是否通过校验
@@ -53,15 +56,20 @@ export default {
             valid_password: false
         }
     },
+    computed: {
+        
+    },
     methods: {
         passwordInput: function () {
+            debugger;
             this.passwordScore = 0;
             console.log('长度', this.password_length);
             // 长度校验
-            this.password_length = this.password.trim().length;
+            this.password_length = this.passwordValue.trim().length;
             // 密码长度6-20位
 
             this.valid_password_length = true;
+            this.isPass = true;
             if (this.password_length > 5 && this.password_length < 11) {
                 this.passwordScore = 1;
             } else if (this.password_length > 10 && this.password_length < 17) {
@@ -75,19 +83,15 @@ export default {
 
             debugger;
             // 字符校验
-            if (/[a-z]/.test(this.password)) {
+            if (/[a-z]/.test(this.passwordValue)) {
                 this.passwordScore += 2;
             };
-            if (/[A-Z]/.test(this.password)) {
+            if (/[A-Z]/.test(this.passwordValue)) {
                 this.passwordScore += 2;
             }
-            if (/[0-9]/.test(this.password)) {
+            if (/[0-9]/.test(this.passwordValue)) {
                 this.passwordScore += 2;
             }
-            
-            this.contains_lovercase = /[a-z]/.test(this.password);
-            this.contains_number = /\d/.test(this.password);
-            this.contains_uppercase = /[A-Z]/.test(this.password);
 
             // Check if the password is valid
             // if (this.contains_lovercase == true && this.contains_number == true) {
@@ -104,7 +108,7 @@ export default {
     }
 }
 </script>
-<style>
+<style lang="less" scoped>
 .password_length {
     padding: 2px 10px;
     position: absolute;
@@ -116,7 +120,6 @@ export default {
     color: rgba(71, 87, 98, 0.8);
     border-radius: 4px;
     font-size: 13px;
-    display: none;
     -webkit-transition: all .1s;
     transition: all .1s;
 }
@@ -133,7 +136,6 @@ export default {
 .lnu_container {
     display: block;
     margin: 10px auto;
-    width: 320px;
     height: auto;
     display: -webkit-box;
     display: -ms-flexbox;
