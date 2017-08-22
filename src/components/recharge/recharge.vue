@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="user-wrap">
     <main>
       <el-tabs @tab-click="tabClick" v-model="activeTab" id="rechargeTabWrap" type="border-card">
         <el-tab-pane name="bankcard" label="银行转账">
@@ -8,10 +8,9 @@
         <el-tab-pane name="alipay" label="支付宝转账">
           <alipay></alipay>
         </el-tab-pane>
-        <el-tab-pane name="bite" label="比特币">
+        <el-tab-pane name="bite" label="数字资产">
           <bite></bite>
         </el-tab-pane>
-        <el-tab-pane name="more" label="更多..."></el-tab-pane>
       </el-tabs>
     </main>
     <sidebar></sidebar>
@@ -86,9 +85,9 @@
 </style>
 <style lang="less" rel="stylesheet/less">
   #rechargeTabWrap {
+    min-height: 660px;
     font-family: "微软雅黑";
     border:none;
-    margin-top: 20px;
     width: 980px;
     .el-tabs__header {
       background-color: #f7f7f7;

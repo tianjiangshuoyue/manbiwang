@@ -12,7 +12,7 @@
     </section>
     <ul class="menu">
         <li><router-link to="/userCenter/home">资产管理</router-link></li>
-        <li><router-link to="/recharge??payWay=bankcard">充值</router-link></li>
+        <li><router-link to="/recharge?payWay=bankcard">充值</router-link></li>
         <li><router-link to="/userCenter/withdraw">提现</router-link></li>
         <li><router-link to="/userCenter/rechargeWithdrawRecordList">充值/提现记录</router-link></li>
         <li>账单流水</li>
@@ -28,7 +28,7 @@
         <li>我的API</li>
     </ul>
 </aside>
-  
+
 </template>
 
 <script>
@@ -42,7 +42,7 @@ aside {
     width: 180px;
     text-align: left;
     color: #222;
-    
+
 }
 .menu {
     box-sizing: border-box;
