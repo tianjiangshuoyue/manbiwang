@@ -8,7 +8,7 @@
           <h1>满币网</h1>
           <section>
             <router-link to="/">首页</router-link>
-            <router-link id="usercenter-forward" to="/">用户中心</router-link>
+            <router-link id="usercenter-forward" to="/userCenter/home">用户中心</router-link>
             </section>
         </header>
         
