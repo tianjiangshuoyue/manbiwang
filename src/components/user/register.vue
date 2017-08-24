@@ -19,15 +19,14 @@
                 </li>
                 <li>
                     <label class="label" for="password">登陆密码</label>
-                    <p>
+                    <!-- <p>
                         <div class="password-wrap">
                             <input v-if="passwordType == 'password'" :class="{'input': true, 'is-danger': errors.has('password') }" v-validate="'required|password'" v-model="password" autocomplete="off" name="password" type="password" placeholder="6-20位数字、字符">
-                            <!-- <input type="password" name="txtPassword" style="display:none"> -->
                             <input v-if="passwordType == 'input'" :class="{'input': true, 'is-danger': errors.has('password') }" v-validate="'required|password'" v-model="password" name="password" type="input" autocomplete="off" placeholder="6-20位数字、字符">
                             <i :class="['iconfont', passwordType == 'password' ? 'icon-see-close' : 'icon-see-show']" @click="changePassword"></i>
                         </div>
                         <span v-show="errors.has('password')" class="help is-danger">{{ errors.first('password') }}</span>
-                    </p>
+                    </p> -->
                     <password-strong :password="password"></password-strong>
                 </li>
                 <li class="send-code">
@@ -81,9 +80,7 @@ export default {
                 }
             });
         },
-        changePassword() {
-            this.passwordType = this.passwordType == 'password' ? 'input' : 'password';
-        },
+        
         sendCode1() {
             this.$message('发送中...');
             setTimeout(() => {

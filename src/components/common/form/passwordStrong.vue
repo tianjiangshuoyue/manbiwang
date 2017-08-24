@@ -1,20 +1,36 @@
 
 <template>
     <div>
-        <div class="input_container">
-            <input type="password"
+        <div class="input_container password-wrap">
+            <input v-if="passwordType == 'password'"
+                type="password"
+                :class="{'input': true, 'is-danger': errors.has('password') }" v-validate="'required|password'"
+                @input="passwordInput" 
+                v-model="passwordValue"
                 maxlength="20"
-                 @input="passwordInput" v-model="passwordValue" placeholder="6-20位字母和数字" />
-                 <i :class="['iconfont', passwordType == 'password' ? 'icon-see-close' : 'icon-see-show']" @click="changePassword"></i>
-            <span v-bind:class="{ valid_password_length: valid_password_length , show_password_length: isPass}"
+                placeholder="6-20位字母和数字" />
+            <input v-if="passwordType == 'input'"
+                type="input"
+                @input="passwordInput" 
+                :class="{'input': true, 'is-danger': errors.has('password') }"
+                v-validate="'required|password'"
+                v-model="passwordValue"
+                name="password"
+                autocomplete="off"
+                maxlength="20"
+                placeholder="6-20位数字、字符">
+            <i :class="['iconfont', passwordType == 'password' ? 'icon-see-close' : 'icon-see-show']"
+                @click="changePassword">
+            </i>
+            <!-- <span v-bind:class="{ valid_password_length: valid_password_length , show_password_length: isPass}"
                 class="password_length">
                 {{passwordScore}}
-            </span>
+            </span> -->
         </div> 
-        <div v-if="isPass" class="lnu_container">
-            <p v-bind:class="{ lovercase_valid: passwordScore < 7 }">弱</p>
-            <p v-bind:class="{ number_valid: passwordScore > 6 && passwordScore < 10 }">中</p>
-            <p v-bind:class="{ uppercase_valid: passwordScore > 10 }">强</p>
+        <div v-if="isPass" :class="['lnu_container', 'passwordStrongType', passwordStrongType]">
+            <p class="low">弱</p>
+            <p class="normal">中</p>
+            <p class="strong">强</p>
         </div>
         <!-- <div class="valid_password_container" v-bind:class="{show_valid_password_container : valid_password }">
             <svg width="100%" height="100%" viewBox="0 0 140 100">
@@ -46,12 +62,15 @@ export default {
     data() {
         return {
             passwordValue: this.password,
+            passwordType: 'password',
+            passwordStrongType: '',
             password_length: 0,
             passwordScore: 0,
             isPass: false, // 密码是否通过校验
             contains_lovercase: false,
             contains_number: false,
             contains_uppercase: false,
+            lovercase_valid: '',
             valid_password_length: false,
             valid_password: false
         }
@@ -59,7 +78,24 @@ export default {
     computed: {
         
     },
+    watch: {
+        passwordScore (score) {
+            if (score == 5 || score == 6) {
+                this.passwordStrongType = "low-wrap";
+                
+            } else  if (score > 6 && score < 11) {
+                this.passwrodStrongType = "normal-wrap";
+            } else if (score > 10 && score < 14) {
+                this.passwordStrongType = 'strong-wrap';
+            };
+            this.isPass = (score > 4 && score < 14) ? true : false;
+            
+        }
+    },
     methods: {
+        changePassword() {
+            this.passwordType = this.passwordType == 'password' ? 'input' : 'password';
+        },
         passwordInput: function () {
             debugger;
             this.passwordScore = 0;
@@ -69,7 +105,6 @@ export default {
             // 密码长度6-20位
 
             this.valid_password_length = true;
-            this.isPass = true;
             if (this.password_length > 5 && this.password_length < 11) {
                 this.passwordScore = 1;
             } else if (this.password_length > 10 && this.password_length < 17) {
@@ -146,36 +181,36 @@ export default {
 }
 
 .lnu_container p {
-    width: 100px;
-    height: auto;
+    width: 90px;
+    height: 20px;
+    line-height: 20px;
     font-size: 12px;
-    line-height: 1.2;
     text-align: center;
     border-radius: 2px;
-    color: rgba(71, 87, 98, 0.8);
-    /* background: -webkit-linear-gradient(left, #00AD7C 50%, #eee 50%);
-    background: linear-gradient(to right, #00AD7C 50%, #eee 50%); */
-    background-size: 201% 100%;
-    background-position: right;
-    -webkit-transition: background .3s;
-    transition: background .3s;
+    background-color: #d9d9d9;
+    
 }
 
-.lovercase_valid,
-.number_valid,
-.uppercase_valid {
-    background-position: left !important;
-    color: rgba(255, 255, 255, 0.9) !important;
+.passwordStrongType{
+    // background-position: left !important;
+    // color: rgba(255, 255, 255, 0.9) !important;
+    color: #fff;
+    
 }
-
-.lovercase_valid {
-    background-color: rgba(65, 130, 239, 0.4);
+.low-wrap {
+    .low {
+        background-color: rgba(65, 130, 239, 0.4);
+    }
 }
-.number_valid {
-    background-color: rgba(65, 130, 239, 0.7);
+.normal-wrap {
+    .normal {
+        background-color: rgba(65, 130, 239, 0.7);
+    }
 }
-.uppercase_valid {
-    background-color: #4182ef;
+.strong-wrap {
+    .strong {
+        background-color: #4182ef;
+    }
 }
 .valid_password_container {
     display: block;

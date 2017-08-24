@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Hello from '@/components/Hello';
 const Register = resolve => require(['@/components/user/register.vue'], resolve);
+const registerSuccess = resolve => require(['@/components/user/registerSuccess.vue'], resolve);
 const Login = resolve => require(['@/components/user/login.vue'], resolve);
 import UserCenter from '@/components/userCenter/userCenter.vue';
 const UserCenterHome = resolve => require(['@/components/userCenter/userCenterHome.vue'], resolve);
@@ -16,13 +17,17 @@ Vue.use(Router);
 
 export default new Router({
   routes: [
-    {
-      path: '/',
-      redirect: '/userCenter/home'
-    },
+    // {
+    //   path: '/',
+    //   redirect: '/userCenter/home'
+    // },
     {
       path: '/register',
       component: Register,
+    },
+    {
+      path: '/registerSuccess',
+      component: registerSuccess,
     },
     {
       path: '/login',
@@ -48,20 +53,18 @@ export default new Router({
               path: 'notId',
               component: notId
             }
-            
+
           ]
         },
         {
           path: 'rechargeWithdrawRecordList',
           component: rechargeWithdrawRecordList
+        },
+        {
+          path: '/recharge',
+          component: Recharge,
         }
       ]
     },
-    
-    
-    {
-      path: '/recharge',
-      component: Recharge,
-    }
   ],
 });
