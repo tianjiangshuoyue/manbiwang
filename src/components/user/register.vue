@@ -8,7 +8,7 @@
             <span v-show="errors.has('mobile')" class="help is-danger">{{ errors.first('mobile') }}</span>
         </p>
     </div> -->
-        <form class="vodal-content form">
+        <form @submit.prevent="validateForm" class="vodal-content form">
             <ul>
                 <li>
                     <label class="label" for="mobile">手机号</label>
@@ -43,7 +43,7 @@
             <p class="tip">点击注册即代表已同意
                 <router-link to="/">《满币网用户协议》</router-link>
             </p>
-            <button @click="validateForm" type="button" class="btn large long">注册</button>
+            <button type="submit" class="btn large long">注册</button>
             <router-link to="/login" class="btn text">老用户登陆</router-link>
 
         </form>
@@ -72,12 +72,15 @@ export default {
     },
     methods: {
         validateForm(scope) {
-            this.$validator.validateAll(scope).then(result => {
-                if (this.errors.items.length) {
-
+            this.$validator.validateAll().then(result => {
+                console.log(this.errors);
+                if (result) {
+                    console.log('From Submitted!');
+                    return;
                     // eslint-disable-next-line
-                    this.$message(this.errors.items[0].msg);
+                    // this.$message(this.errors.items[0].msg);
                 }
+                console.log('Correct them errors!');
             });
         },
         
