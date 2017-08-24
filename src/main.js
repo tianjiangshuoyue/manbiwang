@@ -26,9 +26,18 @@ Validator.addLocale(zh_CN);
 const config = {
   locale: 'zh_CN',
 };
+const dictionary = {
+  zh_CN: {
+    attributes: {
+      mobile: '手机号',
+      sendCode: '短信验证',
+      password: '密码'
+    }
+  },};
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
 Vue.use(VeeValidate, config);
+Validator.updateDictionary(dictionary);
 Vue.use(Filter);
 Vue.use(VueClipboard);
 /* eslint-disable no-new */

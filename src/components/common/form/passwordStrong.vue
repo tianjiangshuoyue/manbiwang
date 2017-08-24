@@ -1,10 +1,12 @@
 
 <template>
     <div>
-        <div class="input_container password-wrap">
+        <p class="control input_container password-wrap" >
             <input v-if="passwordType == 'password'"
+                name="password"
                 type="password"
-                :class="{'input': true, 'is-danger': errors.has('password') }" v-validate="'required|password'"
+                :class="{'input': true, 'is-danger': errors.has('password') }"
+                v-validate="'required|password'" 
                 @input="passwordInput" 
                 v-model="passwordValue"
                 maxlength="20"
@@ -13,20 +15,18 @@
                 type="input"
                 @input="passwordInput" 
                 :class="{'input': true, 'is-danger': errors.has('password') }"
-                v-validate="'required|password'"
+                v-validate="'required|password'" 
                 v-model="passwordValue"
                 name="password"
                 autocomplete="off"
                 maxlength="20"
                 placeholder="6-20位数字、字符">
+            
             <i :class="['iconfont', passwordType == 'password' ? 'icon-see-close' : 'icon-see-show']"
                 @click="changePassword">
             </i>
-            <!-- <span v-bind:class="{ valid_password_length: valid_password_length , show_password_length: isPass}"
-                class="password_length">
-                {{passwordScore}}
-            </span> -->
-        </div> 
+        </p>
+        <span v-show="errors.has('password')" class="help is-danger">{{ errors.first('password') }}</span>
         <div v-if="isPass" :class="['lnu_container', 'passwordStrongType', passwordStrongType]">
             <p class="low">弱</p>
             <p class="normal">中</p>
@@ -58,7 +58,7 @@
 大于10分，强
  */
 export default {
-    props:['password'],
+    props: ['password'],
     data() {
         return {
             passwordValue: this.password,
@@ -97,10 +97,11 @@ export default {
             this.passwordType = this.passwordType == 'password' ? 'input' : 'password';
         },
         passwordInput: function () {
-            debugger;
+            this.$emit('update:password', this.passwordValue);
+            this.$emit('changePwd', this.passwordValue);
             this.passwordScore = 0;
             console.log('长度', this.password_length);
-            // 长度校验
+            // 长度校验π
             this.password_length = this.passwordValue.trim().length;
             // 密码长度6-20位
 
@@ -116,7 +117,7 @@ export default {
                 this.valid_password_length = false;
             }
 
-            debugger;
+            
             // 字符校验
             if (/[a-z]/.test(this.passwordValue)) {
                 this.passwordScore += 2;

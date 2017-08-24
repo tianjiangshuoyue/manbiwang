@@ -3,7 +3,9 @@
  */
 export default {
   isPassword (str) { // password
-    return /^([0-9a-zA-Z]){6,20}$/.test(str);
+    debugger;
+    let isResult = /^([0-9a-zA-Z]){6,20}$/.test(str);
+    return isResult;
   },
   isPhone (str) {
     return /^1[3|4|5|7|8][0-9]\d{4,8}$/.test(str);

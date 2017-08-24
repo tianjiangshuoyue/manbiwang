@@ -8,17 +8,28 @@
             <span v-show="errors.has('mobile')" class="help is-danger">{{ errors.first('mobile') }}</span>
         </p>
     </div> -->
-        <form @submit.prevent="validateForm" class="vodal-content form">
+        <form class="vodal-content form">
             <ul>
                 <li>
                     <label class="label" for="mobile">手机号</label>
                     <p :class="{ 'control': true }">
-                        <input v-validate="'required|mobile'" v-model="mobile" :class="{'input': true, 'is-danger': errors.has('mobile') }" autocomplete="false" name="mobile" type="text" placeholder="请输入手机号码">
+                        <input
+                            v-validate="'required|mobile'"
+                            v-model="mobile"
+                            :class="{'input': true, 'is-danger': errors.has('mobile') }"
+                            autocomplete="false" name="mobile" type="text" placeholder="请输入手机号码">
                         <span v-show="errors.has('mobile')" class="help is-danger">{{ errors.first('mobile') }}</span>
                     </p>
                 </li>
                 <li>
                     <label class="label" for="password">登陆密码</label>
+                    <!-- <input 
+                type="password"
+                :class="{'input': true, 'is-danger': errors.has('password') }"
+                v-validate="'required|password'"
+                v-model="password"
+                maxlength="20"
+                placeholder="6-20位字母和数字" /> -->
                     <!-- <p>
                         <div class="password-wrap">
                             <input v-if="passwordType == 'password'" :class="{'input': true, 'is-danger': errors.has('password') }" v-validate="'required|password'" v-model="password" autocomplete="off" name="password" type="password" placeholder="6-20位数字、字符">
@@ -27,7 +38,7 @@
                         </div>
                         <span v-show="errors.has('password')" class="help is-danger">{{ errors.first('password') }}</span>
                     </p> -->
-                    <password-strong :password="password"></password-strong>
+                    <password-strong password.sync=password v-on:changePwd="changePwd"></password-strong>
                 </li>
                 <li class="send-code">
                     <label for="sendCode">验证码</label>
@@ -43,7 +54,7 @@
             <p class="tip">点击注册即代表已同意
                 <router-link to="/">《满币网用户协议》</router-link>
             </p>
-            <button type="submit" class="btn large long">注册</button>
+            <button type="button" @click="validateForm" class="btn large long">注册</button>
             <router-link to="/login" class="btn text">老用户登陆</router-link>
 
         </form>
@@ -71,6 +82,9 @@ export default {
 
     },
     methods: {
+        changePwd (newPwd) {
+            this.password = newPwd;
+        },
         validateForm(scope) {
             this.$validator.validateAll().then(result => {
                 console.log(this.errors);
