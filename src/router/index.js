@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Hello from '@/components/Hello';
+import index from '@/components/index';
 const Register = resolve => require(['@/components/user/register.vue'], resolve);
 const registerSuccess = resolve => require(['@/components/user/registerSuccess.vue'], resolve);
 const Login = resolve => require(['@/components/user/login.vue'], resolve);
@@ -18,10 +18,14 @@ Vue.use(Router);
 
 export default new Router({
   routes: [
-    // {
-    //   path: '/',
-    //   redirect: '/userCenter/home'
-    // },
+    {
+      path: '/',
+      redirect: '/index'
+    },
+    {
+      path: '/index',
+      component: index,
+    },
     {
       path: '/register',
       component: Register,
