@@ -4,6 +4,7 @@ import Hello from '@/components/Hello';
 const Register = resolve => require(['@/components/user/register.vue'], resolve);
 const registerSuccess = resolve => require(['@/components/user/registerSuccess.vue'], resolve);
 const Login = resolve => require(['@/components/user/login.vue'], resolve);
+const forgetPassword = resolve => require(['@/components/user/forgetPassword.vue'], resolve);
 import UserCenter from '@/components/userCenter/userCenter.vue';
 const UserCenterHome = resolve => require(['@/components/userCenter/userCenterHome.vue'], resolve);
 const SecureSetting = resolve => require(['@/components/secureSetting.vue'], resolve);
@@ -32,6 +33,10 @@ export default new Router({
     {
       path: '/login',
       component: Login,
+    },
+    {
+      path: '/forgetPassword',
+      component: forgetPassword,
     },
     {
       path: '/userCenter/',

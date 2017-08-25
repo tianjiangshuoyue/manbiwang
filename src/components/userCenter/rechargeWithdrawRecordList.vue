@@ -4,15 +4,15 @@
         <el-table :data="tableData" style="width: 100%">
             <el-table-column prop="date" label="时间" width="180">
             </el-table-column>
-            <el-table-column prop="name" label="类型" width="180">
+            <el-table-column prop="type" label="类型" width="180">
             </el-table-column>
-            <el-table-column prop="address" label="金额/数量">
+            <el-table-column prop="money" label="金额/数量">
             </el-table-column>
-            <el-table-column prop="address" label="详情">
+            <el-table-column prop="detail" label="详情">
             </el-table-column>
-            <el-table-column prop="address" label="备注">
+            <el-table-column prop="mark" label="备注">
             </el-table-column>
-            <el-table-column prop="address" label="状态">
+            <el-table-column prop="checkType" label="状态">
             </el-table-column>
             <el-table-column prop="address" label="操作">
             </el-table-column>
@@ -32,6 +32,14 @@ export default {
     data() {
         return {
             tableData: [
+                {
+                    date: '2017-06-30 20:00',
+                    type: '充值',
+                    money: '￥100.00',
+                    detail: '工商银行 尾号1234',
+                    mark: 'C2认证失败，照片不符合要求',
+                    checkType: '待审核'
+                }
             ],
             currentPage2: 5
         }

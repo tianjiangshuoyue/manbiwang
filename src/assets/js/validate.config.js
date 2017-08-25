@@ -16,7 +16,7 @@ export default {
     password: {
         
         messages: {
-            zh_CN: (field, args) => '密码错误‘',
+            zh_CN: (field, args) => '密码错误',
         },
         validate: validate.isPassword
     },

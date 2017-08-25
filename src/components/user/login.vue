@@ -12,10 +12,7 @@
         </li>
         <li>
           <label class="label" for="password">登陆密码</label>
-          <p>
-            <input v-validate="'required|password'" :class="{'input': true, 'is-danger': errors.has('password') }" name="password" type="password" placeholder="请输入">
-            <span v-show="errors.has('password')" class="help is-danger">{{ errors.first('password') }}</span>
-          </p>
+          <Password></Password>
         </li>
 
       </ul>
@@ -33,11 +30,13 @@
  * file 登录
  */
 import Vodal from '../../components/common/vodal.vue';
+import Password from '../../components/common/form/passwordStrong.vue';
 export default {
   data() {
     return {
       show: true,
       start1: false,
+      password: ''
     }
   },
   methods: {
@@ -53,7 +52,8 @@ export default {
     },
   },
   components: {
-    Vodal
+    Vodal,
+    Password
   }
 }
 </script>
