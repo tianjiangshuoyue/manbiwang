@@ -8,18 +8,15 @@
         <el-tab-pane name="alipay" label="支付宝转账">
           <alipay></alipay>
         </el-tab-pane>
-        <el-tab-pane name="bite">
+        <el-tab-pane name="coin">
           <span slot="label">
             <el-dropdown>
               <span class="el-dropdown-link">
                 数字货币 <i style="font-size: 12px;" class="el-icon-arrow-down"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>黄金糕</el-dropdown-item>
-                <el-dropdown-item>狮子头</el-dropdown-item>
-                <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                <el-dropdown-item disabled>双皮奶</el-dropdown-item>
-                <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
+                <el-dropdown-item @click.native="tabClick({name:'coin',type:'bite'})" data-name="bite">比特币</el-dropdown-item>
+                <el-dropdown-item>莱特币</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </span>
@@ -40,10 +37,12 @@
   export default {
     data() {
       return {
-        activeTab: this.$router.currentRoute.query['payWay']
+        activeTab: this.$router.currentRoute.query['payWay'],
+        coinType:this.$router.currentRoute.query['coinType'],
       }
     }, methods: {
       tabClick(tab) {
+        console.log(tab)
         this.$router.push('/recharge?payWay=' + tab.name);
       }
 
@@ -95,13 +94,27 @@
   }
 </style>
 <style lang="less" rel="stylesheet/less">
+  ::-webkit-scrollbar {display:none}
   .rechargeArea .el-dropdown-menu {
     width: 137px;
-    transform: translate(34px,-4px);
-    border-top:0;
+    transform: translate(34px, -4px);
+    border-top: 0;
+    li {
+      padding-left: 20px;
+      font-size: 14px;
+      height: 36px;
+      font-family: "微软雅黑";
+      color: #333;
+      &:hover {
+        color: #4182ef;
+      }
+    }
   }
 
   #rechargeTabWrap {
+    .el-tabs__item.is-disabled {
+      cursor: pointer;
+    }
     min-height: 660px;
     font-family: "微软雅黑";
     border: none;
