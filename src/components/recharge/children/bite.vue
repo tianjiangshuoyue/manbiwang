@@ -54,7 +54,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <div class="showRecordText">仅显示最新10条充值记录，如需查询全部充值记录，请去<a href="">充值/提现记录</a></div>
+      <div class="showRecordText">仅显示最新5条充值记录，如需查询全部充值记录，请去<a href="#/userCenter/rechargeWithdrawRecordList">充值/提现记录</a></div>
     </div>
   </div>
 </template>

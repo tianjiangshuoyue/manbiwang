@@ -31,24 +31,40 @@
       <el-button type="primary">生成订单</el-button>
     </div>
     <div v-if="!isFirst" id="useAlipay">
-      <div class="row">
-        <label>收款人 :</label>
-        <div class="text-only">{{receiveMan}}</div>
+      <div class="leftBox">
+        <h2>请使用支付宝</h2>
+        <div class="row">
+          <label>汇款账号 :</label>
+          <div class="text-only">{{payAccount}}</div>
+        </div>
+        <div class="row">
+          <label>汇款金额 :</label>
+          <div class="text-only">{{cashNum}}</div>
+        </div>
+        <div class="someTip">
+          请务必按照订单金额汇款，信息不匹配将无法入账
+        </div>
+        <div class="refillForm" @click="refillConfirm">重新填写订单</div>
       </div>
-      <div class="row">
-        <label>收款账号 :</label>
-        <div class="text-only">{{receiveAccount}}</div>
-      </div>
-      <div class="row">
-        <label>汇款账号 :</label>
-        <div class="text-only">{{alipayAccount}}</div>
-      </div>
-      <div class="erweima">
-        <img src="../../../assets/img/erweima.png">
-      </div>
-      <div class="row">
-        <label>汇款金额 :</label>
-        <div class="text-only cashNum">￥{{payNum|currency}}</div>
+      <div class="leftBox rightBox">
+        <h2>向下列账户转账</h2>
+        <div class="row">
+          <label>收款人 :</label>
+          <div class="text-only">{{receiveMan}}</div>
+          <button v-clipboard:copy="receiveMan"
+                  v-clipboard:success="onCopy" class="copyText">复制
+          </button>
+        </div>
+        <div class="row">
+          <label>收款账号 :</label>
+          <div class="text-only">{{receiveAccount}}</div>
+          <button v-clipboard:copy="receiveAccount"
+                  v-clipboard:success="onCopy" class="copyText">复制
+          </button>
+        </div>
+        <div class="erweima">
+          <img src="../../../assets/img/erweima.png">
+        </div>
       </div>
     </div>
     <div id="underLine"></div>
@@ -105,7 +121,8 @@
           </template>
         </el-table-column>
       </el-table>
-      <div class="showRecordText">仅显示最新10条充值记录，如需查询全部充值记录，请去<a href="">充值/提现记录</a></div>
+      <div class="showRecordText">仅显示最新5条充值记录，如需查询全部充值记录，请去<a
+        href="#/userCenter/rechargeWithdrawRecordList">充值/提现记录</a></div>
     </div>
   </div>
 </template>
@@ -114,6 +131,8 @@
     data () {
       return {
         //是否已经实名
+        payAccount: '1232@qq.com',
+        cashNum: '3000',
         isFilledInfo: false,
         //绑定以后的属性
         receiveMan: '北京必满盆投资咨询有限公司',
@@ -158,7 +177,7 @@
         }],
         //首次支付宝充值
         showDeclare: true,
-        isFirst: true,
+        isFirst: false,
         name: '',
         idCardNum: '',
         idCardWrong: true,
@@ -186,7 +205,49 @@
     methods: {
       switchDeclare(){
         this.showDeclare = !this.showDeclare;
-      }
+      },
+      onCopy(){
+        const h = this.$createElement;
+        this.$message({
+          message: h('p', null, [
+            h('span', null, '复制成功!'),
+          ]),
+          type: 'success'
+        });
+      },
+      refillConfirm() {
+        const h = this.$createElement;
+        this.$msgbox({
+          title: '重新填写订单',
+          message: h('div',null,[h('p', '重新生成新支付宝订单，您的原订单将撤销。'),
+            h('p', '未入账的支付宝转账可能因为订单信息不匹配而被退回。'),
+            h('p', '点击“确定”继续。'),]),
+          showCancelButton: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+//          beforeClose: (action, instance, done) => {
+//              if (action === 'confirm') {
+//                instance.confirmButtonLoading = true;
+//                instance.confirmButtonText = '执行中...';
+//                setTimeout(() => {
+//                  done();
+//                  setTimeout(() => {
+//                    instance.confirmButtonLoading = false;
+//                  }, 300);
+//                }, 3000);
+//              } else {
+//                done();
+//              }
+//          }
+        }).then(action => {
+          this.$message({
+            type: 'info',
+            message: 'action: ' + action
+          });
+        }).catch(e=>{
+            console.log(e)
+          });
+      },
     },
     components: {},
     mounted(){
@@ -200,6 +261,61 @@
   }
 </script>
 <style lang="less" rel="stylesheet/less">
+  .rechargeArea{
+    .el-message-box{
+      font-family: '微软雅黑';
+      .el-message-box__header{
+        padding:0;
+        overflow: hidden;
+        border-bottom:1px solid #e7ecf0;
+      }
+      .el-message-box__headerbtn{
+        top:10px;
+        background: none;
+      }
+      .el-message-box__title{
+        font-size: 16px;
+        color:#222;
+        margin:20px;
+      }
+      .el-message-box__content{
+        padding-left:40px;
+        padding-top:20px;
+        padding-bottom:15px;
+        p{
+          font-size: 14px;
+          color: #333333;
+          margin-bottom:10px;
+        }
+      }
+      .el-message-box__btns{
+        padding-top:0;
+        padding-left:40px;
+        text-align: left;
+        position: relative;
+        height:36px;
+        button{
+          position: absolute;
+          left: 0;
+          top:0;
+          width: 92px;
+          height: 36px;
+          margin:0;
+          font-family: '微软雅黑';
+          &:nth-child(2){
+            left: 40px;
+          }
+          &:nth-child(1){
+            left: 152px;
+            &:hover{
+              background: #f7f7f7;
+            }
+          }
+        }
+        padding-bottom:35px;
+      }
+    }
+  }
   #aliPayRecharge {
     padding: 5px;
     #bankcardProcess {
@@ -293,11 +409,13 @@
       }
     }
     #underLine {
+      float: left;
       width: 940px;
       border: solid 1px #e7ecf0;
       margin-top: 40px;
     }
     #declare {
+      float: left;
       padding-top: 10px;
       padding-bottom: 20px;
       text-align: left;
@@ -326,19 +444,15 @@
     #useAlipay {
       padding-top: 40px;
       .row {
-        margin-top: 20px;
-        height: 34px;
         label {
-          width: 170px;
+          width: 100px;
           margin-right: 20px;
           float: left;
           text-align: right;
           font-size: 14px;
-          line-height: 34px;
         }
         .text-only {
           float: left;
-          line-height: 34px;
           font-size: 14px;
         }
         .cashNum {
@@ -358,13 +472,28 @@
         color: #222;
       }
       .erweima {
-        margin-left: 190px;
+        margin-left: 120px;
         text-align: left;
         margin-top: 20px;
+        margin-bottom: 10px;
         img {
           width: 100px;
           height: 100px;
         }
+      }
+      .refillForm {
+        width: 150px;
+        height: 36px;
+        line-height: 36px;
+        border-radius: 2px;
+        background-image: linear-gradient(to bottom, #ffffff, #f1f6ff);
+        border: solid 1px #d9d9d9;
+        float: left;
+        font-size: 14px;
+        text-align: center;
+        color: #4182ef;
+        margin: 40px 0 28px 145px;
+        cursor: pointer;
       }
     }
 
@@ -381,37 +510,37 @@
       table {
         text-align: center;
         font-size: 12px;
-        thead{
-          height:36px;
+        thead {
+          height: 36px;
         }
-        tr{
-          height:48px;
+        tr {
+          height: 48px;
         }
         th {
           text-align: center;
         }
-        td{
+        td {
         }
-        .tBtn{
-          color:#1793e6;
-          margin:0 3px;
-          cursor:pointer;
+        .tBtn {
+          color: #1793e6;
+          margin: 0 3px;
+          cursor: pointer;
         }
       }
     }
 
-    .showRecordText{
+    .showRecordText {
       width: 940px;
       height: 56px;
       line-height: 56px;
       background-color: #f5f9ff;
       border: solid 1px #d7e5f4;
       font-size: 12px;
-      color:#666;
-      margin-top:10px;
+      color: #666;
+      margin-top: 10px;
       text-align: left;
       text-indent: 20px;
-      a{
+      a {
 
       }
     }

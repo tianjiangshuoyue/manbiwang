@@ -22,6 +22,7 @@
 import bankcard from './children/bankcard.vue';
 import alipay from './children/alipay.vue';
 import bite from './children/bite.vue';
+let body = document.querySelector('body');
 export default {
   data() {
     return {
@@ -36,6 +37,12 @@ export default {
     bankcard,
     alipay,
     bite
+  },
+  beforeCreate(){
+    body.className = body.className + (body.className?' ':'') + 'rechargeArea';
+  },
+  beforeDestroy(){
+    body.className = body.className.replace(/\s?rechargeArea\s?/,'')
   },
   mounted() {
   },

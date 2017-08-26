@@ -12,7 +12,7 @@
         <el-input v-if="!isFilledInfo" v-model="name" placeholder="您的真实姓名"></el-input>
         <div v-if="isFilledInfo" class="text-only">{{name}}</div>
       </div>
-      <div v-if="!isFilledInfo"  v-show="false" class="warning">请输入正确的</div>
+      <div v-if="!isFilledInfo" v-show="false" class="warning">请输入正确的</div>
       <div v-if="!isFilledInfo" class="row">
         <label>身份证号:</label>
         <el-input :class="{warningBorder:idCardWrong}" v-model="idCardNum" placeholder="您的身份证号"></el-input>
@@ -51,6 +51,9 @@
             </el-option>
           </el-select>
         </div>
+        <div class="someTip">
+          请选择银行并使用相应网银/手机银行进行转账充值
+        </div>
       </div>
       <div class="leftBox rightBox">
         <h2>向下列账户转账</h2>
@@ -58,33 +61,84 @@
           <label>收款人 :</label>
           <div class="text-only">{{receiveMan}}</div>
           <button v-clipboard:copy="receiveMan"
-                  v-clipboard:success="onCopy" class="copyText">复制</button>
+                  v-clipboard:success="onCopy" class="copyText">复制
+          </button>
         </div>
         <div class="row">
           <label>收款账号 :</label>
           <div class="text-only">{{receiveAccount}}</div>
           <button v-clipboard:copy="receiveAccount"
-                  v-clipboard:success="onCopy" class="copyText">复制</button>
+                  v-clipboard:success="onCopy" class="copyText">复制
+          </button>
         </div>
         <div class="row">
           <label>收款行 :</label>
           <div class="text-only">{{receiveBankCode}}</div>
           <button v-clipboard:copy="receiveBankCode"
-                  v-clipboard:success="onCopy" class="copyText">复制</button>
+                  v-clipboard:success="onCopy" class="copyText">复制
+          </button>
         </div>
       </div>
 
     </div>
     <div id="underLine"></div>
     <div id="declare">
-      <h2>充值须知 :<span v-show="!showDeclare&&isBinding" @click="switchDeclare">展开 <span class="el-icon-arrow-up"></span></span><span
+      <h2>充值教程 :<span v-show="!showDeclare&&isBinding" @click="switchDeclare">展开 <span class="el-icon-arrow-up"></span></span><span
         v-show="showDeclare&&isBinding" @click="switchDeclare">收起 <span class="el-icon-arrow-down"></span></span></h2>
       <div v-show="showDeclare">
-        1. 仅限您本人并且已绑定的银行卡汇款充值。<br>
-        2. 绑卡成功后，请您根据提示的信息，将您要充值的金额汇入指定的收款账户。我们在收到款项后30分钟内会为您完成充值入账。<br>
-        3. 请在每次充值前查看并仔细核对收款信息，我们可能不定期更换收款账户。<br>
-        4. 不符合上述规定的充值，将于10个工作日内原路退回，如果您的资金超过10个工作日尚未退回，请联系客服 <a>010-1234-5678</a>。
+        1. 您可用已绑定的银行卡将充值金额转账到满币网的收款账户。转账后，如信息无误，您的资金将在半小时内入账。<br>
+        2. 请在每次充值前查看并仔细核对收款信息，我们可能不定期更换收款账户。客服 <a>010-1234-5678</a><br>
+        <h4>手机银行转账示意图</h4>
+        <img src="">
+        <h4>网银转账示意图</h4>
+        <img src="">
       </div>
+    </div>
+    <div v-if="isBinding" id="rechargeLog">
+      <h2>充值记录</h2>
+      <el-table
+        :data="tableData"
+        style="width: 100%">
+        <el-table-column
+          prop="date"
+          label="入账时间"
+          width="135">
+        </el-table-column>
+        <el-table-column
+          prop="payWay"
+          label="充值方式"
+          width="135">
+        </el-table-column>
+        <el-table-column
+          prop="cashNum"
+          label="金额"
+          width="135">
+        </el-table-column>
+        <el-table-column
+          prop="detail"
+          label="详情"
+          width="135">
+        </el-table-column>
+        <el-table-column
+          prop="tips"
+          label="备注"
+          width="135">
+        </el-table-column>
+        <el-table-column
+          prop="status"
+          label="状态"
+          width="135">
+        </el-table-column>
+        <el-table-column
+          prop="option"
+          label="操作">
+          <template scope="scope">
+            <span class="tBtn">撤销</span>
+            <span class="tBtn">认证</span>
+          </template>
+        </el-table-column>
+      </el-table>
+      <div class="showRecordText">仅显示最新5条充值记录，如需查询全部充值记录，请去<a href="#/userCenter/rechargeWithdrawRecordList">充值/提现记录</a></div>
     </div>
   </div>
 </template>
@@ -93,7 +147,7 @@
     data () {
       return {
         //是否已经实名
-        isFilledInfo:false,
+        isFilledInfo: false,
         //绑定以后的属性
         chosenBankcard: '工商银行 尾号8776',
         receiveMan: '北京必满盆投资咨询有限公司',
@@ -138,6 +192,27 @@
           value: '选项5',
           label: '北京烤鸭'
         }],
+        tableData: [{
+          date: '2016-05-02',
+          payWay: '王小虎',
+          cashNum: '￥1000',
+          detail: '上海市普陀区金沙江路',
+          tips: '1518 弄',
+          status: '等待汇出',
+          option: ''
+        }, {
+          date: '2016-05-04',
+          payWay: '王小虎',
+          cashNum: ''
+        }, {
+          date: '2016-05-01',
+          payWay: '王小虎',
+          cashNum: ''
+        }, {
+          date: '2016-05-03',
+          payWay: '王小虎',
+          cashNum: ''
+        }],
         bankCode: ''
       }
     },
@@ -155,48 +230,125 @@
         this.showDeclare = !this.showDeclare;
       }
     },
-    components: {
-
-    },
+    components: {},
     mounted(){
-      document.addEventListener('keydown',(e)=>{
+      document.addEventListener('keydown', (e)=> {
         console.log(e.keyCode);
-        if(e.keyCode==16){
+        if (e.keyCode == 16) {
           this.isBinding = !this.isBinding;
         }
-        if(e.keyCode==191){
+        if (e.keyCode == 191) {
           this.isFilledInfo = !this.isFilledInfo;
         }
-      },false)
+      }, false)
     }
   }
 </script>
 <style lang="less" rel="stylesheet/less">
-  .leftBox{
+  .leftBox {
     width: 440px;
-    height: 177px;
+    min-height: 177px;
     border-radius: 2px;
     background-color: #ffffff;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08), inset 0 4px 0 0 #4182ef;
     float: left;
-    h2{
+    h2 {
       font-size: 12px;
-      color:#666;
-      height:38px;
+      color: #666;
+      height: 38px;
       line-height: 38px;
-      width:90%;
-      margin:0 auto;
+      width: 90%;
+      margin: 0 auto;
       border-bottom: dashed 1px #d9d9d9;
     }
+    .row{
+      margin-top: 20px;
+      height: 16px;
+      line-height: 16px;
+    }
+    .copyText {
+      float: right;
+      margin-right: 20px;
+      font-size: 14px;
+      color: #1793e6;
+      cursor: pointer;
+      background: none;
+      font-family: '微软雅黑';
+      border: none;
+      height: 16px;
+      line-height: 16px;
+      outline: none;
+    }
+    .someTip{
+      font-family: '微软雅黑';
+      font-size: 12px;
+      text-align: left;
+      color: #ff4033;
+      float: left;
+      margin-left:75px;
+      margin-top:20px;
+    }
   }
-  .rightBox{
-    margin-left:60px;
+
+  .rightBox {
+    margin-left: 60px;
+  }
+
+  #rechargeLog {
+    width:100%;
+    float: left;
+    h2 {
+      height: 19px;
+      font-size: 14px;
+      color: #222;
+      font-family: '微软雅黑';
+      text-align: left;
+      margin-bottom: 10px;
+    }
+    table {
+      background: red;
+      text-align: center;
+      font-size: 12px;
+      thead{
+        height:36px;
+      }
+      tr{
+        height:48px;
+      }
+      th {
+        text-align: center;
+      }
+      td{
+      }
+      .tBtn{
+        color:#1793e6;
+        margin:0 3px;
+        cursor:pointer;
+      }
+    }
+  }
+
+  .showRecordText{
+    width: 940px;
+    height: 56px;
+    line-height: 56px;
+    background-color: #f5f9ff;
+    border: solid 1px #d7e5f4;
+    font-size: 12px;
+    color:#666;
+    margin-top:10px;
+    text-align: left;
+    text-indent: 20px;
+    a{
+
+    }
   }
 </style>
 <style lang="less" rel="stylesheet/less" scoped>
-.el-select {
-  width: auto;
-}
+  .el-select {
+    width: auto;
+  }
+
   #bankcardRecharge {
     padding: 5px;
     #bankcardProcess {
@@ -276,8 +428,8 @@
         font-size: 12px;
         color: #ff4033;
         text-align: left;
-        height:auto;
-        margin:0;
+        height: auto;
+        margin: 0;
         text-indent: 190px;
       }
       button {
@@ -304,7 +456,7 @@
       float: left;
     }
     #declare {
-      width:100%;
+      width: 100%;
       float: left;
       padding-top: 10px;
       padding-bottom: 20px;
@@ -314,7 +466,7 @@
         font-size: 14px;
         color: #222;
         font-family: '微软雅黑';
-        margin-bottom:10px;
+        margin-bottom: 10px;
         span {
           float: right;
           color: #4182ef;
@@ -332,40 +484,34 @@
         font-family: '微软雅黑';
         line-height: 20px;
       }
+      h4 {
+        font-size: 14px;
+        margin-top: 20px;
+        margin-bottom:10px;
+        color: #222222;
+      }
+      img{
+        width:500px;
+        height:300px;
+      }
     }
     #useBankCard {
       padding-top: 40px;
       .row {
-        margin-top: 20px;
-        height:16px;
-        line-height: 16px;
-        .copyText{
-          float: right;
-          margin-right:20px;
-          font-size: 14px;
-          color: #1793e6;
-          cursor: pointer;
-          background: none;
-          font-family: '微软雅黑';
-          border:none;
-          height:16px;
-          line-height: 16px;
-          outline: none;
-        }
         label {
           width: 100px;
           margin-right: 20px;
           float: left;
           text-align: right;
           font-size: 14px;
-          color:#222;
+          color: #222;
           font-family: '微软雅黑';
         }
         .text-only {
           font-family: '微软雅黑';
           float: left;
           font-size: 14px;
-          color:#222;
+          color: #222;
         }
         #chooseBankcard {
           font-family: '微软雅黑';
@@ -380,9 +526,11 @@
         font-family: '微软雅黑';
         color: #222;
       }
+
     }
 
   }
+
 
 
 </style>
