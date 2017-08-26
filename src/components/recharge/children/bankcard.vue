@@ -138,7 +138,8 @@
           </template>
         </el-table-column>
       </el-table>
-      <div class="showRecordText">仅显示最新5条充值记录，如需查询全部充值记录，请去<a href="#/userCenter/rechargeWithdrawRecordList">充值/提现记录</a></div>
+      <div class="showRecordText">仅显示最新5条充值记录，如需查询全部充值记录，请去<a href="#/userCenter/rechargeWithdrawRecordList">充值/提现记录</a>
+      </div>
     </div>
   </div>
 </template>
@@ -261,7 +262,7 @@
       margin: 0 auto;
       border-bottom: dashed 1px #d9d9d9;
     }
-    .row{
+    .row {
       margin-top: 20px;
       height: 16px;
       line-height: 16px;
@@ -279,14 +280,14 @@
       line-height: 16px;
       outline: none;
     }
-    .someTip{
+    .someTip {
       font-family: '微软雅黑';
       font-size: 12px;
       text-align: left;
       color: #ff4033;
       float: left;
-      margin-left:75px;
-      margin-top:20px;
+      margin-left: 75px;
+      margin-top: 20px;
     }
   }
 
@@ -295,7 +296,7 @@
   }
 
   #rechargeLog {
-    width:100%;
+    width: 100%;
     float: left;
     h2 {
       height: 19px;
@@ -309,37 +310,37 @@
       background: red;
       text-align: center;
       font-size: 12px;
-      thead{
-        height:36px;
+      thead {
+        height: 36px;
       }
-      tr{
-        height:48px;
+      tr {
+        height: 48px;
       }
       th {
         text-align: center;
       }
-      td{
+      td {
       }
-      .tBtn{
-        color:#1793e6;
-        margin:0 3px;
-        cursor:pointer;
+      .tBtn {
+        color: #1793e6;
+        margin: 0 3px;
+        cursor: pointer;
       }
     }
   }
 
-  .showRecordText{
+  .showRecordText {
     width: 940px;
     height: 56px;
     line-height: 56px;
     background-color: #f5f9ff;
     border: solid 1px #d7e5f4;
     font-size: 12px;
-    color:#666;
-    margin-top:10px;
+    color: #666;
+    margin-top: 10px;
     text-align: left;
     text-indent: 20px;
-    a{
+    a {
 
     }
   }
@@ -418,6 +419,9 @@
         .el-input {
           width: 280px;
         }
+        .el-select {
+          width: 280px;
+        }
         .text-only {
           float: left;
           line-height: 34px;
@@ -487,12 +491,12 @@
       h4 {
         font-size: 14px;
         margin-top: 20px;
-        margin-bottom:10px;
+        margin-bottom: 10px;
         color: #222222;
       }
-      img{
-        width:500px;
-        height:300px;
+      img {
+        width: 500px;
+        height: 300px;
       }
     }
     #useBankCard {
@@ -530,7 +534,6 @@
     }
 
   }
-
 
 
 </style>
