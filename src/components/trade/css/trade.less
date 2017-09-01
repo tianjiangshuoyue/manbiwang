@@ -72,3 +72,37 @@
     }
     
 }
+#my-coin {
+    section {
+        display: flex;
+        span {
+            display: inline-block;
+            width: 49%;
+            font-size: 12px;
+            
+            &:nth-child(1) {
+                text-align: left;
+                color: #666;
+            }
+            &:nth-child(2) {
+                text-align: right;
+                color: #222;
+            }
+        }
+        
+    }
+}
+// 仓位
+.holding-list {
+    width: 50%;
+    margin-left: 38%;
+    li {
+        display: inline-block;
+        width: 40px;
+        &.active {
+            background-color: #4182ef;
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+}

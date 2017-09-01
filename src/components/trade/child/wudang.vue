@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="wrap">
     <ul class="five-list">
         <li class="up">
             <span>卖5</span>
@@ -61,7 +61,7 @@
 export default {
     data () {
         return {
-            
+
         }
     }
 }
@@ -102,5 +102,10 @@ ul {
     color: #222;
     font-size: 14px;
     font-weight: bold;
+}
+.wrap {
+    padding: 13px 10px;
+    border: solid 1px #d9d9d9;
+    border-top: none;
 }
 </style>

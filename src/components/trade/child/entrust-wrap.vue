@@ -69,19 +69,19 @@ export default {
         return {
           tableData: [{
             date: '02',
-            name: '王小虎',
+            name: '比特币BTC',
             address: '上海市普陀区金沙江路 1518 弄'
           }, {
-            date: '204',
-            name: '王小虎',
+            date: '1',
+            name: '比特币BTC',
             address: '￥100.00'
           }, {
-            date: '01',
-            name: '王小虎',
+            date: '2',
+            name: '比特币BTC',
             address: '上￥100.00'
           }, {
-            date: '2016-05-03',
-            name: '王小虎',
+            date: '23',
+            name: '比特币BTC',
             address: '￥100.00'
           }],
           currentPage: 1

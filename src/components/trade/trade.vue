@@ -35,18 +35,19 @@
                             <el-input v-model="form.name"></el-input>
                         </el-form-item>
                     </el-form>
-                    <ul>
-                        <li>1/4</li>
-                        <li>1/2</li>
-                        <li>满仓</li>
+                    <ul class="holding-list" >
+                        <li
+                        v-for="item in holdingList"
+                        @click="selected(item)"
+                        :class="{active: activeHoldingName == item}">{{ item }}</li>
                     </ul>
-                    <div>
+                    <div id="my-coin">
                         <section>
                             <span>可用</span>
-                            <span>交易额</span>
+                            <span>B10.0000</span>
                         </section>
                         <section>
-                            <span>B10.0000</span>
+                            <span>交易额</span>
                             <span>￥1000.00</span>
                         </section>
                     </div>
@@ -60,8 +61,8 @@
                             <el-input v-model="form.name"></el-input>
                         </el-form-item>
                     </el-form>
-                    <ul>
-                        <li>1/4</li>
+                    <ul class="holding-list">
+                        <li>1/41</li>
                         <li>1/2</li>
                         <li>满仓</li>
                     </ul>
@@ -102,6 +103,8 @@ export default {
             fiveActiveName: 'first',
             operateActiveName: 'first', // 是买入还是卖出的切换
             entrustActiveName: 'first', // 是当前委托还是历史委托／持仓的tab切换
+            holdingList: ['1/4', '1/2', '满仓'],
+            activeHoldingName: '',
             form: {
 
             }
@@ -109,6 +112,9 @@ export default {
     }, methods: {
         handleClick () {
 
+        },
+        selected(holdingName) {
+            this.activeHoldingName = holdingName;
         }
     },
     components: {
