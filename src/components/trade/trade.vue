@@ -27,55 +27,10 @@
             </el-tabs>
             <el-tabs v-model="operateActiveName" @tab-click="handleClick">
                 <el-tab-pane label="买入" name="first">
-                    <el-form ref="form" :model="form" label-width="80px">
-                        <el-form-item label="买入价">
-                            <el-input v-model="form.name"></el-input>
-                        </el-form-item>
-                        <el-form-item label="买入量">
-                            <el-input v-model="form.name"></el-input>
-                        </el-form-item>
-                    </el-form>
-                    <ul class="holding-list" >
-                        <li
-                        v-for="item in holdingList"
-                        @click="selected(item)"
-                        :class="{active: activeHoldingName == item}">{{ item }}</li>
-                    </ul>
-                    <div id="my-coin">
-                        <section>
-                            <span>可用</span>
-                            <span>B10.0000</span>
-                        </section>
-                        <section>
-                            <span>交易额</span>
-                            <span>￥1000.00</span>
-                        </section>
-                    </div>
+                    <buy></buy>
                 </el-tab-pane>
                 <el-tab-pane label="卖出" name="second">
-                    <el-form ref="form" :model="form" label-width="80px">
-                        <el-form-item label="买入价">
-                            <el-input v-model="form.name"></el-input>
-                        </el-form-item>
-                        <el-form-item label="买入量">
-                            <el-input v-model="form.name"></el-input>
-                        </el-form-item>
-                    </el-form>
-                    <ul class="holding-list">
-                        <li>1/41</li>
-                        <li>1/2</li>
-                        <li>满仓</li>
-                    </ul>
-                    <div>
-                        <section>
-                            <span>可用</span>
-                            <span>交易额</span>
-                        </section>
-                        <section>
-                            <span>B10.0000</span>
-                            <span>￥1000.00</span>
-                        </section>
-                    </div>
+                    <buy></buy>
                 </el-tab-pane>
             </el-tabs>
         </div>
@@ -96,6 +51,7 @@
 <script>
 import five from './child/wudang.vue';
 import entrustWrap from './child/entrust-wrap.vue';
+import buy from './child/buy.vue';
 export default {
     data () {
         return {
@@ -103,8 +59,7 @@ export default {
             fiveActiveName: 'first',
             operateActiveName: 'first', // 是买入还是卖出的切换
             entrustActiveName: 'first', // 是当前委托还是历史委托／持仓的tab切换
-            holdingList: ['1/4', '1/2', '满仓'],
-            activeHoldingName: '',
+            
             form: {
 
             }
@@ -113,13 +68,12 @@ export default {
         handleClick () {
 
         },
-        selected(holdingName) {
-            this.activeHoldingName = holdingName;
-        }
+        
     },
     components: {
         entrustWrap,
-        five
+        five,
+        buy
     }
 }
 </script>
