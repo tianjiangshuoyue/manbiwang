@@ -17,17 +17,17 @@
         style="width: 100%">
         <el-table-column
           prop="date"
-          label="入账时间"
+          label="账单时间"
           width="135">
         </el-table-column>
         <el-table-column
           prop="payWay"
-          label="充值方式"
+          label="类型"
           width="135">
         </el-table-column>
         <el-table-column
           prop="cashNum"
-          label="金额"
+          label="金额/数量"
           width="135">
         </el-table-column>
         <el-table-column
@@ -50,11 +50,11 @@
           label="操作">
           <template scope="scope">
             <span class="tBtn">撤销</span>
-            <span class="tBtn">认证</span>
+            <span class="tBtn">去认证</span>
           </template>
         </el-table-column>
       </el-table>
-      <div class="showRecordText">仅显示最新10条充值记录，如需查询全部充值记录，请去<a href="">充值/提现记录</a></div>
+      <div class="showRecordText">仅显示最新5条充值记录，如需查询全部充值记录，请去<a href="#/userCenter/rechargeWithdrawRecordList">充值/提现记录</a></div>
     </div>
   </div>
 </template>

@@ -6,7 +6,7 @@
             </el-table-column>
             <el-table-column prop="name" label="提现方式" width="180">
             </el-table-column>
-            <el-table-column prop="address" label="金额">
+            <el-table-column prop="address" label="金额/数量">
             </el-table-column>
             <el-table-column prop="address" label="详情">
             </el-table-column>
