@@ -1,7 +1,7 @@
 <template>
   <vodal :width="320" :height="357+61" :show="show" animation="rotate" @hide="show = false">
     <header class="vodal-title">登陆</header>
-    <form class="vodal-content form" >
+    <form class="vodal-content form block" >
       <ul>
         <li>
           <label class="label" for="mobile">登录名</label>

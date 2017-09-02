@@ -58,6 +58,9 @@
 </div>
 </template>
 <script>
+/**
+ *@file 五档／成交
+  */
 export default {
     data () {
         return {
@@ -90,10 +93,16 @@ ul {
         
     }
     .up {
-        color: #de2e22;
+        span:nth-child(2) {
+            color: #de2e22;
+        }
+        
     }
     .down {
-        color: #15893b;
+        span:nth-child(2) {
+            color: #15893b;
+        }
+        
     }
     
 }
@@ -104,8 +113,7 @@ ul {
     font-weight: bold;
 }
 .wrap {
-    padding: 13px 10px;
-    border: solid 1px #d9d9d9;
+    padding: 0 10px 13px;
     border-top: none;
 }
 </style>

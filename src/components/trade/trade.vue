@@ -25,7 +25,7 @@
                 </el-tab-pane>
                 
             </el-tabs>
-            <el-tabs v-model="operateActiveName" @tab-click="handleClick">
+            <el-tabs id="operate-tab-wrap" v-model="operateActiveName" @tab-click="handleClick">
                 <el-tab-pane label="买入" name="first">
                     <buy></buy>
                 </el-tab-pane>
@@ -36,14 +36,14 @@
         </div>
     </div>
   
-    <el-tabs v-model="entrustActiveName" @tab-click="handleClick">
+    <el-tabs id="entrust-wrap" v-model="entrustActiveName" @tab-click="handleClick">
         <el-tab-pane label="当前委托" name="first">
             <entrust-wrap></entrust-wrap>
         </el-tab-pane>
         <el-tab-pane label="历史委托" name="second">
             <entrust-wrap></entrust-wrap>
         </el-tab-pane>
-        <el-tab-pane label="持仓" name="second">配置管理</el-tab-pane>
+        <el-tab-pane label="持仓" name="third">配置管理</el-tab-pane>
     </el-tabs>
     
 </div>

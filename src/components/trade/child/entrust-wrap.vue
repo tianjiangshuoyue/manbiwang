@@ -1,5 +1,5 @@
 <template>
-<div>
+<div >
     <el-table
       :data="tableData"
       style="width: 100%">
@@ -46,6 +46,12 @@
         prop="address"
         label="委托状态">
       </el-table-column>
+      <el-table-column
+      label="操作">
+      <template scope="scope">
+        <el-button type="text">撤销</el-button>
+      </template>
+      </el-table-column>
     </el-table>
     <div class="block">
     <el-pagination
@@ -62,7 +68,7 @@
 </template>
 <script>
 /**
- * @ file: 当前委托，历史微博，持仓
+ * @ file: 当前委托，历史委托，持仓
  */
 export default {
       data() {
@@ -70,18 +76,22 @@ export default {
           tableData: [{
             date: '02',
             name: '比特币BTC',
+            operate: 'buy',
             address: '上海市普陀区金沙江路 1518 弄'
           }, {
             date: '1',
             name: '比特币BTC',
+            operate: 'sell',
             address: '￥100.00'
           }, {
             date: '2',
             name: '比特币BTC',
+            operate: 'sell',
             address: '上￥100.00'
           }, {
             date: '23',
             name: '比特币BTC',
+            operate: 'sell',
             address: '￥100.00'
           }],
           currentPage: 1
@@ -98,7 +108,7 @@ export default {
     }
 </script>
 <style scoped lang="less">
-.el-table, .el-pagination {
+.el-tables, .el-pagination {
     margin-top: 20px;
 }
 </style>

@@ -8,7 +8,7 @@
             <span v-show="errors.has('mobile')" class="help is-danger">{{ errors.first('mobile') }}</span>
         </p>
     </div> -->
-        <form class="vodal-content form">
+        <form class="vodal-content form block">
             <ul>
                 <li>
                     <label class="label" for="mobile">手机号</label>
