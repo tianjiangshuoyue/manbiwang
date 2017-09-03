@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import index from '@/components/index';
+import index from '@/components/index/index.vue';
 const Register = resolve => require(['@/components/user/register.vue'], resolve);
 const registerSuccess = resolve => require(['@/components/user/registerSuccess.vue'], resolve);
 const Login = resolve => require(['@/components/user/login.vue'], resolve);
@@ -14,6 +14,8 @@ const notId = resolve => require(['@/components/withdraw/notId.vue'], resolve);
 const rechargeWithdrawRecordList = resolve => require(['@/components/userCenter/rechargeWithdrawRecordList.vue'], resolve);
 
 const Recharge = resolve => require(['@/components/recharge/recharge.vue'], resolve);
+// 交易行情
+const trade = resolve => require(['@/components/trade/trade.vue'], resolve);
 Vue.use(Router);
 
 export default new Router({
@@ -25,6 +27,10 @@ export default new Router({
     {
       path: '/index',
       component: index,
+    },
+    {
+      path: '/trade',
+      component: trade,
     },
     {
       path: '/register',
