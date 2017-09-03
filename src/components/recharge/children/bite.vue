@@ -1,7 +1,7 @@
 <template>
   <div id="biteRecharge">
     <div id="bankcardProcess">
-      <div>比特币充值地址 :</div>
+      <div>{{coinTable[type]}}充值地址 :</div>
     </div>
     <div id="biteCode">{{biteCode}}<span>历史地址</span><span>更换</span></div>
     <div class="erweima">
@@ -60,6 +60,7 @@
 </template>
 <script>
   export default {
+    props:['type'],
     data () {
       return {
         //是否已经实名
@@ -129,7 +130,12 @@
           value: '选项5',
           label: '北京烤鸭'
         }],
-        bankCode: ''
+        bankCode: '',
+        //币对照表
+        coinTable:{
+          bite:'比特币',
+          laite:'莱特币'
+        }
       }
     },
     methods: {

@@ -8,19 +8,22 @@
         <el-tab-pane name="alipay" label="支付宝转账">
           <alipay></alipay>
         </el-tab-pane>
-        <el-tab-pane name="coin">
+        <el-tab-pane name="coin" disabled>
           <span slot="label">
-            <el-dropdown>
+            <el-dropdown trigger="click">
               <span class="el-dropdown-link">
                 数字货币 <i style="font-size: 12px;" class="el-icon-arrow-down"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item @click.native="tabClick({name:'coin',type:'bite'})" data-name="bite">比特币</el-dropdown-item>
-                <el-dropdown-item>莱特币</el-dropdown-item>
+                <el-dropdown-item @click.native="tabClick({name:'coin',type:'bite'})"
+                                  data-name="bite">比特币</el-dropdown-item>
+                <el-dropdown-item @click.native="tabClick({name:'coin',type:'laite'})"
+                                  data-name="bite">莱特币</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </span>
-          <bite></bite>
+          <bite type="bite" v-show="coinType == 'bite'"></bite>
+          <bite type="laite" v-show="coinType == 'laite'"></bite>
         </el-tab-pane>
       </el-tabs>
     </main>
@@ -38,12 +41,11 @@
     data() {
       return {
         activeTab: this.$router.currentRoute.query['payWay'],
-        coinType:this.$router.currentRoute.query['coinType'],
+        coinType: this.$router.currentRoute.query['coinType'],
       }
     }, methods: {
       tabClick(tab) {
-        console.log(tab)
-        this.$router.push('/recharge?payWay=' + tab.name);
+        this.$router.push('/recharge?payWay=' + tab.name +(tab.type?'&coinType='+tab.type:''));
       }
 
     }, components: {
@@ -61,6 +63,7 @@
     },
     beforeRouteUpdate(to, from, next) {
       this.activeTab = to.query['payWay'];
+      this.coinType = to.query['coinType'];
       next();
     }
   }
@@ -94,7 +97,14 @@
   }
 </style>
 <style lang="less" rel="stylesheet/less">
-  ::-webkit-scrollbar {display:none}
+  body {
+    padding: 0 !important;
+  }
+
+  ::-webkit-scrollbar {
+    display: none
+  }
+
   .rechargeArea .el-dropdown-menu {
     width: 137px;
     transform: translate(34px, -4px);
