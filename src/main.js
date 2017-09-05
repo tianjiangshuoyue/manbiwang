@@ -5,6 +5,7 @@ import App from './App';
 import router from './router';
 import store from './vuex';
 import ElementUI from 'element-ui'
+import Vodal from './components/common/vodal.vue';
 import 'element-ui/lib/theme-default/index.css'
 import VeeValidate, { Validator } from 'vee-validate';
 import zh_CN from 'vee-validate/dist/locale/zh_CN.js'
@@ -39,6 +40,7 @@ Vue.use(ElementUI);
 Vue.use(VeeValidate, config);
 Validator.updateDictionary(dictionary);
 Vue.use(Filter);
+Vue.component(Vodal.name, Vodal);
 Vue.use(VueClipboard);
 /* eslint-disable no-new */
 new Vue({

@@ -3,12 +3,16 @@
 
 .form {
   li {
-   
     text-align: left;
-
   }
-  
-
+}
+.form.inline {
+  label {
+    padding: 0 5px;
+  }
+  input {
+    padding-left: 2px;
+  }
 }
 .form.block {
   label {
@@ -56,6 +60,14 @@
   display: inline-block;
   width: 135px;
 }
+// 覆盖 饿了么的样式
 .el-form-item__label {
   font-size: 12px;
+}
+.el-form-item__label {
+  font-size: 14px;
+  color: #222;
+}
+.el-form-item.is-required .el-form-item__label:before {
+  content: '';
 }

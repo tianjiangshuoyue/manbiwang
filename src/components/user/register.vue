@@ -64,7 +64,6 @@
 /**
  * file 注册
  */
-import Vodal from '../../components/common/vodal.vue';
 import SendCode from '../../components/common/form/sendCode.vue';
 import PasswordStrong from '../../components/common/form/passwordStrong.vue';
 export default {

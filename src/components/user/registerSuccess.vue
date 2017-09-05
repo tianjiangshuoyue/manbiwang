@@ -14,7 +14,6 @@
 /**
  * file 注册成功
  */
-import Vodal from '../../components/common/vodal.vue';
 export default {
     data() {
         return {

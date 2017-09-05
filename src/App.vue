@@ -25,7 +25,7 @@
             <div id="logo"></div>
           <section>
             <router-link to="/">首页</router-link>
-            <router-link to="/">行情交易</router-link>
+            <router-link to="/trade">行情交易</router-link>
             <router-link id="usercenter-forward" to="/userCenter/home">用户中心</router-link>
             </section>
         </header>

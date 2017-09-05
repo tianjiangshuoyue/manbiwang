@@ -119,7 +119,7 @@ export default {
   color: #222222;
 }
 .vodal-content {
-  padding: 0 20px;
+  padding: 20px 20px 0;
 }
 .vodal-close {
     position: absolute;

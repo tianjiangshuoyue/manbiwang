@@ -49,7 +49,6 @@
 /**
  * file 忘记密码
  */
-import Vodal from '../../components/common/vodal.vue';
 import Password from '../../components/common/form/passwordStrong.vue';
 export default {
   data() {
