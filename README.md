@@ -3,7 +3,8 @@
 
 ## 1 技术介绍
 ### 1.1 技术栈
-- Vue2 + Vue-router + vue-ydui
+- Vue2
+- Vue-router
 - Vue-router
 - [elements](https://github.com/ydcss/vue-ydui)
 
