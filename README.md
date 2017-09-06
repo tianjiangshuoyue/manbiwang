@@ -4,12 +4,12 @@
 ## 1 技术介绍
 ### 1.1 技术栈
 - Vue2 + Vue-router + vue-ydui
-- Vue
 - Vue-router
 - [elements](https://github.com/ydcss/vue-ydui)
 
 #### 1.2 组件
 - 弹框： [dialog.vue](https://github.com/chenjiahan/vodal)（位于components/common文件夹里）
+
 #### 1.3 插件
 - 表单验证：[Vee-Validate](http://vee-validate.logaretm.com/)
 ## Build Setup
