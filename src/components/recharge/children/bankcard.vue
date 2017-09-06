@@ -353,8 +353,8 @@
   #bankcardRecharge {
     padding: 5px;
     #bankcardProcess {
-      width: 740px;
-      border-bottom: solid 2px #e7ecf0;
+      width: 100%;
+      border-bottom: solid 1px #e7ecf0;
       padding-bottom: 20px;
       overflow: hidden;
       div {
@@ -455,7 +455,7 @@
     }
     #underLine {
       width: 940px;
-      border: solid 1px #e7ecf0;
+      border-bottom: solid 1px #e7ecf0;
       margin-top: 40px;
       float: left;
     }

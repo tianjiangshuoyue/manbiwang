@@ -17,18 +17,22 @@
               </li>
             </ul>
           </div>
-          欢迎您，<span>123@manbi.wang </span><span>退出</span></header>
-      
-    
-      <div id="main-wrap">
-        <header>
+          欢迎您，<span>123@manbi.wang </span><span>退出</span>
+      </header>
+      <div id="main-nav-wrap">
+        <div id="main-nav">
             <div id="logo"></div>
           <section>
             <router-link to="/">首页</router-link>
             <router-link to="/trade">行情交易</router-link>
             <router-link id="usercenter-forward" to="/userCenter/home">用户中心</router-link>
             </section>
-        </header>
+        </div>
+      </div>
+      
+    
+      <div id="main-wrap">
+        
         
         <router-view></router-view>
       </div>
@@ -79,18 +83,18 @@ export default {
   background: url(/static/img/logo.png) no-repeat;
   background-size: contain;
 }
-#main-wrap {
-  position: relative;
-  max-width: 1440px;
-  margin: 0 auto;
-  >header {
+#main-nav-wrap {
+  box-shadow: 0 2px 4px 0 #e7ecf0;
+}
+#main-nav {
     position: relative;
+    width: 1180px;
     height: 60px;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
     line-height: 60px;
     text-align: right;
     color: #414141;
-    box-shadow: 0 2px 4px 0 #e7ecf0;
+    
     >section {
       
       font-weight: bold;
@@ -101,6 +105,11 @@ export default {
       }
     }
   }
+#main-wrap {
+  position: relative;
+  max-width: 1180px;
+  margin: 0 auto;
+  
 }
 #broadcast-list {
     color: #fff;

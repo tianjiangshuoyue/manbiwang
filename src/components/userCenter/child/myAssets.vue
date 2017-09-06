@@ -7,14 +7,13 @@
         </div>
         <div id="data-wrap">
             <header id="assets-value">
-                
                 总资产:
                 <em >¥ 16000.00</em>
             </header>
             <table id="assets-list">
                 <thead class="title">
-                    <th class="col1"></th>
-                    <th class="col2">持有</th>
+                    <th class="col2">&nbsp;</th>
+                    <th class="col2">总计</th>
                     <th class="col3">市值</th>
                 </thead>
                 <tbody>
@@ -28,7 +27,7 @@
 
             <footer>
                 <el-button type="primary">充值</el-button>
-                <el-button type="text">提现</el-button>
+                <el-button >提现</el-button>
             </footer>
         </div>
 
@@ -152,6 +151,8 @@ export default {
 }
 #assets-value {
     padding-bottom: 20px;
+    text-align: left;
+    font-size: 16px;
     em {
         font-size: 20px;
         color: #4182ef;
@@ -211,5 +212,6 @@ export default {
 }
 footer {
     margin-top: 20px;
+    margin-bottom: 40px;
 }
 </style>

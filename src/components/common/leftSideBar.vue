@@ -20,7 +20,7 @@
     </ul>
     <ul class="menu">
         <li>会员中心</li>
-        <li>我的会员</li>
+        <li><router-link to="/userCenter/myUser">我的会员</router-link></li>
         <li>扑满币抵扣</li>
     </ul>
     <ul class="menu">

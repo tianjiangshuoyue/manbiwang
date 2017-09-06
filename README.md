@@ -1,19 +1,23 @@
 # 满币网前端技术介绍
-> 满币网1.0
-### 一. 技术栈
-- Vue2 + Vue-router + vue-ydui
-- Vue
+> 满币网1.0，是一个用 `git` 做版本管理工具，
+
+## 1 技术介绍
+### 1.1 技术栈
+- Vue2
 - Vue-router
 - [elements](https://github.com/ydcss/vue-ydui)
-#### 组件
+
+#### 1.2 组件
 - 弹框： [dialog.vue](https://github.com/chenjiahan/vodal)（位于components/common文件夹里）
-#### 插件
-- 表单验证：[Vee-Validate](http://vee-validate.logaretm.com/)
+
+#### 1.3 插件
+- 表单验证：[Vee-Validate]c(http://vee-validate.logaretm.com/)
 ## Build Setup
 
+## 2. 构建命令
 ``` bash
 # install dependencies
-npm install
+npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
@@ -26,3 +30,7 @@ npm run build --report
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## 3. 工作流介绍
+- dev branch: 开发分支
+- master branch： 生产分支（上线用这个）

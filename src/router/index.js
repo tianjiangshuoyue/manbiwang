@@ -10,6 +10,8 @@ const authenticate = resolve => require(['@/components/user/authenticate.vue'], 
 import UserCenter from '@/components/userCenter/userCenter.vue';
 const UserCenterHome = resolve => require(['@/components/userCenter/userCenterHome.vue'], resolve);
 const SecureSetting = resolve => require(['@/components/secureSetting.vue'], resolve);
+// 会员中心相关
+const myUser = resolve => require(['@/components/userCenter/myUser.vue'], resolve);
 // 提现
 const Widthdraw = resolve => require(['@/components/withdraw/withdraw.vue'], resolve);
 const notId = resolve => require(['@/components/withdraw/notId.vue'], resolve);
@@ -65,6 +67,10 @@ export default new Router({
         {
           path: 'secureSetting',
           component: SecureSetting,
+        },
+        {
+          path: 'myUser',
+          component: myUser,
         },
         {
           path: 'withdraw',

@@ -2,17 +2,31 @@
     <div>
         <main>
             <section>
-                <header id="assets-wrap" class="active-tab">
+                <el-tabs v-model="activeName" >
+                    <el-tab-pane label="我的资产" name="first">
+                        <my-assets></my-assets>
+                    </el-tab-pane>
+                    
+                </el-tabs>
+                <!-- <header id="assets-wrap" class="active-tab">
                     <h2 >我的资产</h2>
                     
-                </header>
-                <my-assets></my-assets>
+                </header> -->
+                
             </section>
             <div id="center-wrap">
-               
-                    <center></center>
+                    <div id="user-center-wrap">
+                        <el-tabs v-model="userCenterActiveName">
+                            <el-tab-pane label="会员中心" name="first">
+                                <div id="user-center-content">
+                                    <menber-center></menber-center>
+                                </div>
+                            </el-tab-pane>
+                        </el-tabs>
+                    </div>
                 <section>
                     <header class="active-tab"><h2 >账户与安全</h2></header>
+                    <account-and-secure></account-and-secure>
                 </section>
             </div>
         </main>
@@ -24,29 +38,34 @@
  * file 用户中心首页-资产管理
  */
 import myAssets from './child/myAssets.vue';
-import center from './child/userCenter.vue';
-
+import menberCenter from './child/menberCenter.vue';
+import accountAndSecure from './child/accountAndSecure.vue';
 export default {
     data () {
         return {
-
+            activeName: 'first',
+            userCenterActiveName: 'first'
         }
     }, methods: {
 
     },components: {
         myAssets,
-        center
+        menberCenter,
+        accountAndSecure
     }
 }
 </script>
 <style lang="less" scoped>
+.el-tabs__content {
+    padding-left: 20px;
+}
 aside {
     width: 180px;
 }
 main {
-    position: absolute;
-    left: 200px;
-    right: 0;
+    // position: absolute;
+    // left: 200px;
+    // right: 0;
 }
 #assets-wrap {
     width: 100%;
@@ -62,5 +81,14 @@ h2 {
 }
 #center-wrap {
     display: flex;
+    margin-top: 20px;
+}
+#user-center-content {
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+#user-center-wrap {
+    width: 480px;
+    margin-right: 20px;
 }
 </style>
