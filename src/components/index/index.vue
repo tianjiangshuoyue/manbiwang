@@ -3,7 +3,7 @@
   <section id="welcome">
     <h1>热烈庆祝满币网上线</h1>
     <p id="send">注册就送1（最高）比特币</p>
-    <button>注册</button>
+    <button type="button" @click="$router.push('/register')">注册</button>
     <p id="advice"><i id="trumpet"></i>满币网关于比特币和BCC(Bitcoin Cash)的处理方案公告
       <span>更多</span>
     </p>

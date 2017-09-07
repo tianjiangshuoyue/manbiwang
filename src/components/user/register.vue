@@ -109,7 +109,6 @@ export default {
         }
     },
     components: {
-        Vodal,
         SendCode,
         PasswordStrong
     }
