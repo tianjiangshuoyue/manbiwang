@@ -3,7 +3,6 @@
  */
 export default {
   isPassword (str) { // password
-    debugger;
     let isResult = /^([0-9a-zA-Z]){6,20}$/.test(str);
     return isResult;
   },
